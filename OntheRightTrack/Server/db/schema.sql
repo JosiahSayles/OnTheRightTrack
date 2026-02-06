@@ -17,7 +17,7 @@ CREATE TABLE job_applications (
     location text NOT NULL, 
     applicationdate date NOT NULL, 
     status VARCHAR CHECK,
-    joblisting text, 
-    notest text, 
+    joburl text, 
+    notes text, 
     user_id interger NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
