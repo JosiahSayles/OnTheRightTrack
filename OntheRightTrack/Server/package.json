@@ -1,0 +1,40 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "backend ",
+  "main": "app.js",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "dev": "node --watch --env-file=.env server.js",
+    "test": "vitest",
+    "db:schema": "psql -d ontherighttrack -f db/schema.sql",
+    "db:seed": "node --env-file=.env db/seed.js",
+    "db:reset": "npm run db:schema && npm run db:seed"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.14.1"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.0",
+    "vitest": "^3.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosiahSayles/OnTheRightTrack.git"
+  },
+  "author": "Josiah Sayles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JosiahSayles/OnTheRightTrack/issues"
+  },
+  "homepage": "https://github.com/JosiahSayles/OnTheRightTrack#readme"
+}
