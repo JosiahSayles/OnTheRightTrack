@@ -77,7 +77,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <figure className="md:flex justify-center ">
+          <figure className="md:flex justify-center  ">
             <img
               src="/img/workspace.jpg"
               alt="Work space computer and phone"
@@ -90,8 +90,8 @@ export default function HomePage() {
             />
           </figure>
         </div>
-        <div className="flex-col justify-items-center bg-stone-100 md:w-1/3 px-2">
-          <h2 className="md:text-5xl font-bold pt-30 mb-10">
+        <div className="flex-col justify-items-center bg-stone-100 md:w-1/3 px-2 ">
+          <h2 className="md:text-5xl font-bold pt-30 mb-10 text-shadow-lg">
             Welcome Back!
             <hr className="h-[1px] mt-5 mb-3 border-0 mx-10 bg-lime-400" />
           </h2>
