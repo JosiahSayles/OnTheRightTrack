@@ -25,7 +25,7 @@ export default function Register() {
   return (
     <>
       <section className="flex justify-center min-h-screen bg-gray-200 ">
-        <div className="bg-lime-900 md:w-3/4 text-shadow-lg s   ">
+        <div className="bg-lime-900 w-full md:w-3/4 text-shadow-lg s   ">
           <h2 className=" flex justify-center text-xl md:text-7xl font-bold md:pt-10 md:px-10 text-lime-400  mx-10 md:mx-20 mx-5 mt-5 pb-3 ">
             Register for an account!
           </h2>
