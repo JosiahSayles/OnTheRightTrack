@@ -2,13 +2,23 @@ import { useState, useEffect, use } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../Auth/AuthContext";
 import { useApi } from "../API/APIContext";
+import Avatar from "./UserPageComponents/Avatar";
+import UserInfo from "./UserPageComponents/UserInfo";
+import CreateApplication from "./UserPageComponents/CreateApplication";
+import AllApplications from "./UserPageComponents/AllApplications";
 
 export default function Users() {
   const { token, logout } = useAuth();
   const { request } = useApi();
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(null);
+  const user = {
+    firstname: "user1",
+    lastname: "user1",
+    email: "user@user.com",
+    password: "12345678",
+  };
+  // const [user, setUser] = useState(null);
   const [applications, setApplications] = useState([]);
   const [editAccount, setEditAccount] = useState(false);
   const [createApplication, setCreateApplication] = useState(false);
@@ -19,10 +29,10 @@ export default function Users() {
   const applicationsAdded = applications.length;
 
   useEffect(() => {
-    if (!token) {
-      navigate("/");
-      return;
-    }
+    // if (!token) {
+    //   navigate("/");
+    //   return;
+    // }
 
     const fetchData = async () => {
       try {
@@ -64,7 +74,7 @@ export default function Users() {
     try {
       const udpdatedUser = await request(`/users/${user.id}`, {
         method: "PUT",
-        body: JSON.stringify(updatedInfo),
+        body: JSON.stringify(updateInfo),
       });
 
       setUser(udpdatedUser);
@@ -229,22 +239,61 @@ export default function Users() {
     ? applications.find((application) => application.id === editApplication)
     : null;
   return (
-    <>
-      <section>
+    <div className="flex bg-stone-200 min-h-screen mx-20">
+      <section className="flex-col bg-lime-900 md:w-3/4 text-shadow-lg w-full px-2">
         <div>
-          <h1>Welcome User</h1>
+          <h1 className=" text-xl md:text-6xl font-bold md:pt-10 md: text-lime-400 mx-5 mt-5 pb-3">
+            Hello! {user.firstname || "Guest"}
+          </h1>
+          <div className="flex items-center justify-center mx-5 my-5 gap-6 ">
+            <Avatar
+              user={user}
+              onEditAccount={handleEditAccount}
+              onAvatarChange={handleAvatarChange}
+            />
+            <UserInfo user={user} applicationsAdded={applicationsAdded} />
+          </div>
+          <hr className="h-[1px] mt-5 mb-3 border-0 mx-10 bg-lime-400" />
+          <div className="flex-col ">
+            <h2 className="text-xl md:text-6xl font-bold md: text-lime-400 mx-5 mt-2 pb-3">
+              {user?.firstname || "Guest"} Applications
+            </h2>
+            <div className="md:mx-10 mx-2 mt-5">
+              <AllApplications
+                applications={applications}
+                onStatusChange={handleStatusChange}
+                onEditApplication={handleEditAccount}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <div>
+            <button
+              onClick={handleCreateApplication}
+              className="flex-col justify-items-center w-full bg-lime-600 md:py-8 px-2 lg:py-10 xl:px-10  md:text-3xl font-semibold md:mr-2 rounded-lg mr-5 shadow-lg hover:bg-lime-200 hover:text-lime-500"
+            >
+              <img src="/icons/add.png" alt="add icon" className="md:w-14" />{" "}
+              Add <br />
+              Application
+            </button>
+          </div>
+          <div>
+            <button
+              onClick={handleDeleteApplication}
+              className="flex-col justify-items-center w-full bg-lime-600 md:py-8 px-2 lg:py-10 xl:px-10 md:text-3xl font-semibold md:mr-2 rounded-lg ml-5 shadow-lg hover:bg-lime-200 hover:text-lime-500"
+            >
+              <img
+                src="/icons/delete.png"
+                alt="delete icon"
+                className="md:w-14 "
+              />
+              Delete <br /> Application
+            </button>
+          </div>
         </div>
       </section>
-      <section>
-        <div>
-          <h2>Applications</h2>
-        </div>
-      </section>
-      <section>
-        <div>
-          <h3>Manage your applications</h3>
-        </div>
-      </section>
-    </>
+      <section className="flex flex-col  bg-stone-300 md:w-1/4 w-full text-shadow-lg  px-2"></section>
+    </div>
   );
 }
