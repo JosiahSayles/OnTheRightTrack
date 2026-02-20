@@ -4,8 +4,10 @@ import { useAuth } from "../Auth/AuthContext";
 import { useApi } from "../API/APIContext";
 import Avatar from "./UserPageComponents/Avatar";
 import UserInfo from "./UserPageComponents/UserInfo";
-import CreateApplication from "./UserPageComponents/CreateApplication";
+import CreateApplicationCard from "./UserPageComponents/CreateApplicationCard";
 import AllApplications from "./UserPageComponents/AllApplications";
+import DeleteApplicationCard from "./UserPageComponents/DeleteApplicationCard";
+import EditAccountCard from "./UserPageComponents/EditAccountCard";
 
 export default function Users() {
   const { token, logout } = useAuth();
@@ -18,6 +20,7 @@ export default function Users() {
     email: "user@user.com",
     password: "12345678",
   };
+
   // const [user, setUser] = useState(null);
   const [applications, setApplications] = useState([]);
   const [editAccount, setEditAccount] = useState(false);
@@ -262,7 +265,7 @@ export default function Users() {
               <AllApplications
                 applications={applications}
                 onStatusChange={handleStatusChange}
-                onEditApplication={handleEditAccount}
+                onEditApplication={handleEditApplication}
               />
             </div>
           </div>
@@ -293,7 +296,35 @@ export default function Users() {
           </div>
         </div>
       </section>
-      <section className="flex flex-col  bg-stone-300 md:w-1/4 w-full text-shadow-lg  px-2"></section>
+      <section className="flex flex-col  items-center bg-stone-300 md:w-1/4 w-full text-shadow-lg  px-2">
+        <div>
+          <h3 className="text-lime-800 text-4xl font-semibold  mt-10">
+            Interviews
+          </h3>
+        </div>
+        <div className="bg-lime-300 rounded-xl text-3xl p-10 mt-8 w-2/3 shadow-lg "></div>
+      </section>
+      {editAccount && (
+        <EditAccountCard
+          user={user}
+          onSave={handleSaveAccount}
+          onCancel={handleCanelEdit}
+        />
+      )}
+
+      {createApplication && (
+        <CreateApplicationCard
+          onSave={handleSaveApplication}
+          onCancel={handleCancelCreate}
+        />
+      )}
+
+      {deleteApplication && (
+        <DeleteApplicationCard
+          onSave={handleDeleteApplication}
+          onCancel={handleCancelDelete}
+        />
+      )}
     </div>
   );
 }
