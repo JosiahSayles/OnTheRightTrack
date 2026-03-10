@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS users
-DROP TABLE IF EXISTS job_applications
+DROP TABLE IF EXISTS job_applications;
+DROP TABLE IF EXISTS users;
 
 
 CREATE TABLE users (
@@ -16,8 +16,9 @@ CREATE TABLE job_applications (
     jobtitle text NOT NULL, 
     location text NOT NULL, 
     applicationdate date NOT NULL, 
-    status VARCHAR CHECK,
-    joblisting text, 
-    notest text, 
-    user_id interger NOT NULL REFERENCES users(id) ON DELETE CASCADE
+    status VARCHAR CHECK(status IN ('applied', 'rejected', 'interviewing', 'pending')),
+    joburl text, 
+    notes text, 
+    user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
+
