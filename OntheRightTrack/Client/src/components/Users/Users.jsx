@@ -8,6 +8,7 @@ import CreateApplicationCard from "./UserPageComponents/CreateApplicationCard";
 import AllApplications from "./UserPageComponents/AllApplications";
 import DeleteApplicationCard from "./UserPageComponents/DeleteApplicationCard";
 import EditAccountCard from "./UserPageComponents/EditAccountCard";
+import EditApplicationCard from "./UserPageComponents/EditApplicationCard";
 
 export default function Users() {
   const { token, logout } = useAuth();
@@ -15,9 +16,9 @@ export default function Users() {
   const navigate = useNavigate();
 
   const user = {
-    firstname: "user1",
-    lastname: "user1",
-    email: "user@user.com",
+    firstname: "Josiah",
+    lastname: "Sayles",
+    email: "Josiah.Sayles@gmail.com",
     password: "12345678",
   };
 
@@ -245,10 +246,10 @@ export default function Users() {
     <div className="flex bg-stone-200 min-h-screen mx-20">
       <section className="flex-col bg-lime-900 md:w-3/4 text-shadow-lg w-full px-2">
         <div>
-          <h1 className=" text-xl md:text-6xl font-bold md:pt-10 md: text-lime-400 mx-5 mt-5 pb-3">
-            Hello! {user.firstname || "Guest"}
+          <h1 className=" flex justify-center text-2xl md:text-7xl font-bold md:pt-10 text-lime-400 mx-5 mt-5 pb-3 mb-10 ">
+            Hello {user.firstname || "Guest"}
           </h1>
-          <div className="flex items-center justify-center mx-5 my-5 gap-6 ">
+          <div className="lg:flex flex-row mx-10 my-5 md:justify-between justify-center">
             <Avatar
               user={user}
               onEditAccount={handleEditAccount}
@@ -256,10 +257,17 @@ export default function Users() {
             />
             <UserInfo user={user} applicationsAdded={applicationsAdded} />
           </div>
+          <div className="flex justify-center ">
+            {error && (
+              <div className="border-2 border-red-500 bg-red-100 p-4 w-1/4 flex justify-center mb-6 rounded">
+                <p className="text-red-800">Error: {error}</p>
+              </div>
+            )}
+          </div>
           <hr className="h-[1px] mt-5 mb-3 border-0 mx-10 bg-lime-400" />
           <div className="flex-col ">
             <h2 className="text-xl md:text-6xl font-bold md: text-lime-400 mx-5 mt-2 pb-3">
-              {user?.firstname || "Guest"} Applications
+              {user?.firstname || "Guest"}'s Applications
             </h2>
             <div className="md:mx-10 mx-2 mt-5">
               <AllApplications
@@ -325,6 +333,15 @@ export default function Users() {
           onCancel={handleCancelDelete}
         />
       )}
+
+      {editApplication &&
+        applicationToEdit(
+          <EditApplicationCard
+            application={applicationToEdit}
+            onSave={handleSaveEditApplication}
+            onCancel={handleCancelEditApplication}
+          />,
+        )}
     </div>
   );
 }
