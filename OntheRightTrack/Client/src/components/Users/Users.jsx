@@ -15,14 +15,14 @@ export default function Users() {
   const { request } = useApi();
   const navigate = useNavigate();
 
-  const user = {
-    firstname: "Josiah",
-    lastname: "Sayles",
-    email: "Josiah.Sayles@gmail.com",
-    password: "12345678",
-  };
+  // const user = {
+  //   firstname: "Josiah",
+  //   lastname: "Sayles",
+  //   email: "Josiah.Sayles@gmail.com",
+  //   password: "12345678",
+  // };
 
-  // const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
   const [applications, setApplications] = useState([]);
   const [editAccount, setEditAccount] = useState(false);
   const [createApplication, setCreateApplication] = useState(false);
@@ -33,17 +33,17 @@ export default function Users() {
   const applicationsAdded = applications.length;
 
   useEffect(() => {
-    // if (!token) {
-    //   navigate("/");
-    //   return;
-    // }
+    if (!token) {
+      navigate("/");
+      return;
+    }
 
     const fetchData = async () => {
       try {
-        const userData = await request("/users/me", { method: "GET" });
+        const userData = await request("/users/user", { method: "GET" });
         setUser(userData);
 
-        const applicationData = await request("/users/applications", {
+        const applicationData = await request("/applications", {
           method: "GET",
         });
         const applicationWithStatus = applicationData.map((application) => ({
@@ -112,9 +112,9 @@ export default function Users() {
 
   async function handleSaveApplication(applicationInfo) {
     try {
-      const newApplication = await request("/users/applications", {
+      const newApplication = await request("/applications", {
         method: "POST",
-        body: JSON.stringify({ applicationInfo }),
+        body: JSON.stringify(applicationInfo),
       });
       setApplications((prev) => [...prev, newApplication]);
       setCreateApplication(false);
@@ -134,7 +134,7 @@ export default function Users() {
 
   async function handleConfirmDelete(applicationId) {
     try {
-      await request(`/users/applications/${applicationId}`, {
+      await request(`/applications/${applicationId}`, {
         method: "DELETE",
       });
 
@@ -160,7 +160,7 @@ export default function Users() {
   async function handleSaveEditApplication(updatedData) {
     try {
       const updatedApplication = await request(
-        `/users/applications/${editApplication}`,
+        `/applications/${editApplication}`,
         {
           method: "PUT",
           body: JSON.stringify(updatedData),
@@ -187,11 +187,11 @@ export default function Users() {
     const application = application.find((a) => a.id === applicationId);
 
     let newStatus;
-    if (application.applicationStatus === "Applied") {
+    if (application.status === "Applied") {
       newStatus = "Interviewing";
-    } else if (application.appliactionStatus === "Interviewing") {
+    } else if (application.status === "Interviewing") {
       newStatus = "Offer";
-    } else if (application.appliactionStatus === "Offer") {
+    } else if (application.status === "Offer") {
       newStatus = "Rejected";
     } else {
       newStatus = "Applied";
@@ -200,15 +200,17 @@ export default function Users() {
     setApplications((prev) =>
       prev.map((application) =>
         application.id === applicationId
-          ? { ...application, applicationStatus: newStatus }
+          ? { ...application, status: newStatus }
           : application,
       ),
     );
   }
   // request to update status with DB
   // async function handleStatusChange(applicationId) {
-  //   try{
-  //     const application = applications.find((application) => application.id === applicationId);
+  //   try {
+  //     const application = applications.find(
+  //       (application) => application.id === applicationId,
+  //     );
 
   //     let newStatus;
   //     if (application.applicationStatus === "Applied") {
@@ -246,10 +248,10 @@ export default function Users() {
     <div className="flex bg-stone-200 min-h-screen mx-20">
       <section className="flex-col bg-lime-900 md:w-3/4 text-shadow-lg w-full px-2">
         <div>
-          <h1 className=" flex justify-center text-2xl md:text-7xl font-bold md:pt-10 text-lime-400 mx-5 mt-5 pb-3 mb-10 ">
-            Hello {user.firstname || "Guest"}
+          <h1 className=" flex justify-center text-2xl md:text-7xl font-bold md:pt-10 text-lime-400 mx-5  pb-3 mb-10 ">
+            Hello {user?.firstname || "Guest"}
           </h1>
-          <div className="lg:flex flex-row mx-10 my-5 md:justify-between justify-center">
+          <div className="lg:flex flex-row mx-10 my-5 md:justify-evenly items-center ">
             <Avatar
               user={user}
               onEditAccount={handleEditAccount}
@@ -334,14 +336,13 @@ export default function Users() {
         />
       )}
 
-      {editApplication &&
-        applicationToEdit(
-          <EditApplicationCard
-            application={applicationToEdit}
-            onSave={handleSaveEditApplication}
-            onCancel={handleCancelEditApplication}
-          />,
-        )}
+      {editApplication && applicationToEdit && (
+        <EditApplicationCard
+          application={applicationToEdit}
+          onSave={handleSaveEditApplication}
+          onCancel={handleCancelEditApplication}
+        />
+      )}
     </div>
   );
 }

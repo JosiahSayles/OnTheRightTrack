@@ -78,14 +78,14 @@ export async function updateApplication(
   const sql = ` 
     UPDATE job_applications 
     SET
-     companyname, 
-     jobtitle, 
-     location, 
-     applicationdate, 
-     status, 
-     joburl, 
-     notes, 
-    WHERE id = $1 AND user_id =$9 
+     companyname = $2, 
+     jobtitle = $3, 
+     location = $4, 
+     applicationdate = $5, 
+     status = $6, 
+     joburl = $7, 
+     notes = $8
+    WHERE id = $1 AND user_id = $9 
     RETURNING *  
     `;
   const {

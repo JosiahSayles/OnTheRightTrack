@@ -22,7 +22,7 @@ async function seed() {
         "Job title" + j,
         "City " + j,
         "2026-02-09",
-        "applied",
+        "Applied",
         "https://example.com/job" + j,
         "Notes about Job" + j,
         userId.id,

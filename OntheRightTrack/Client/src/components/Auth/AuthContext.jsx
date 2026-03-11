@@ -5,7 +5,7 @@ const API = import.meta.env.VITE_API_URL;
 const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
-  const { token, setToken } = useState(() => {
+  const [token, setToken] = useState(() => {
     return localStorage.getItem("authToken") || null;
   });
 
@@ -33,7 +33,7 @@ export default function AuthProvider({ children }) {
   const login = async (credentials) => {
     const response = await fetch(API + "/users/login", {
       method: "POST",
-      headers: { "Content-type": "applications/json" },
+      headers: { "Content-type": "application/json" },
       body: JSON.stringify(credentials),
     });
     const result = await response.json();
@@ -41,7 +41,6 @@ export default function AuthProvider({ children }) {
       throw Error(result.message);
     }
     setToken(result.token);
-    localStorage.setItem("authToken", result.token);
   };
 
   const logout = () => {

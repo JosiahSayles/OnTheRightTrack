@@ -1,11 +1,13 @@
 import express from "express";
-import getUserFromToken from "./middleware/getUserFromToken";
-import userRouter from "./api/users";
-import applicationRouter from "./api/applications";
+import getUserFromToken from "./middleware/getUserFromToken.js";
+import userRouter from "./api/users.js";
+import applicationRouter from "./api/applications.js";
+import cors from "cors";
 
 const app = express();
 export default app;
 
+app.use(cors());
 app.use(express.json());
 app.use(getUserFromToken);
 app.use(express.urlencoded({ extended: true }));

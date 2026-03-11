@@ -16,7 +16,7 @@ CREATE TABLE job_applications (
     jobtitle text NOT NULL, 
     location text NOT NULL, 
     applicationdate date NOT NULL, 
-    status VARCHAR CHECK(status IN ('applied', 'rejected', 'interviewing', 'pending')),
+    status VARCHAR CHECK(status IN ('Applied', 'Rejected', 'Interviewing', 'Pending')),
     joburl text, 
     notes text, 
     user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE

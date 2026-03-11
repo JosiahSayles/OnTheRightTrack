@@ -30,7 +30,7 @@ SELECT * FROM users WHERE email=$1
   return user;
 }
 
-export async function getUserId(id) {
+export async function getUserById(id) {
   const sql = `
     SELECT * FROM users WHERE id=$1
     `;

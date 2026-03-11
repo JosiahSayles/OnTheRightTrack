@@ -5,14 +5,13 @@ export default router;
 import {
   createJobApplication,
   getApplicationById,
-  getApplicationById,
   getAllApplications,
   getApplicationsByUserId,
   deleteApplication,
   updateApplication,
-} from "../db/queries/job_applications";
-import requireBody from "../middleware/requireBody";
-import requireUser from "../middleware/requireUser";
+} from "../db/queries/job_applications.js";
+import requireBody from "../middleware/requireBody.js";
+import requireUser from "../middleware/requireUser.js";
 
 router.get("/", requireUser, async (req, res, next) => {
   try {

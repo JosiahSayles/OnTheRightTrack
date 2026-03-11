@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function CreateApplicationCard({ onSave, onCancel }) {
   const [formData, setFormData] = useState({
-    company: "",
+    companyname: "",
     jobtitle: "",
     location: "",
     applicationdate: "",
@@ -14,7 +14,7 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (!formData.company.trim()) {
+    if (!formData.companyname.trim()) {
       alert("Please enter a Company name");
       return;
     }
@@ -50,9 +50,9 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
               Company name:{" "}
               <input
                 type="text"
-                name="company"
+                name="companyname"
                 className="bg-white border-2 rounded-lg w-full px-2"
-                value={formData.company}
+                value={formData.companyname}
                 onChange={handleChange}
               />
             </label>
