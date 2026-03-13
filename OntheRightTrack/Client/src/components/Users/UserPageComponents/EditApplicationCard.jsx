@@ -2,10 +2,10 @@ import { useState } from "react";
 
 export default function EditApplicationCard({ application, onSave, onCancel }) {
   const [formData, setFormData] = useState({
-    company: application.company,
+    companyname: application.companyname,
     jobtitle: application.jobtitle,
     location: application.location,
-    applicationdate: application.applicationdate,
+    applicationdate: application.applicationdate.split("T")[0],
     status: application.status,
     joburl: application.joburl,
     notes: application.notes,
@@ -14,7 +14,7 @@ export default function EditApplicationCard({ application, onSave, onCancel }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (!formData.company.trim()) {
+    if (!formData.companyname.trim()) {
       alert("Please enter a Company name");
       return;
     }
@@ -50,9 +50,9 @@ export default function EditApplicationCard({ application, onSave, onCancel }) {
               Company name:{" "}
               <input
                 type="text"
-                name="company"
+                name="companyname"
                 className="bg-white border-2 rounded-lg w-full px-2"
-                value={formData.company}
+                value={formData.companyname}
                 onChange={handleChange}
               />
             </label>
@@ -106,10 +106,10 @@ export default function EditApplicationCard({ application, onSave, onCancel }) {
                 onChange={handleChange}
                 style={{ maxWidth: "100%" }}
               >
-                <option value="Applied">Applied</option>
-                <option value="Interviewing">Interviewing</option>
-                <option value="Offer">Offer</option>
-                <option value="Rejected">Rejected</option>
+                <option value="Applied"> 🟡 Applied</option>
+                <option value="Interviewing"> 🔵 Interviewing</option>
+                <option value="Offer"> 🟢 Offer</option>
+                <option value="Rejected"> 🔴 Rejected</option>
               </select>
             </label>
           </div>

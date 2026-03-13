@@ -9,6 +9,7 @@ import AllApplications from "./UserPageComponents/AllApplications";
 import DeleteApplicationCard from "./UserPageComponents/DeleteApplicationCard";
 import EditAccountCard from "./UserPageComponents/EditAccountCard";
 import EditApplicationCard from "./UserPageComponents/EditApplicationCard";
+import SearchBar from "./UserPageComponents/SearchBar";
 
 export default function Users() {
   const { token, logout } = useAuth();
@@ -30,7 +31,16 @@ export default function Users() {
   const [editApplication, setEditApplication] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const applicationsAdded = applications.length;
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const applicationsAdded = applications?.length || 0;
+  const filteredApplications = applications
+    ? applications.filter((application) =>
+        `${application.companyname} ${application.title} ${application.status}`
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()),
+      )
+    : [];
 
   useEffect(() => {
     if (!token) {
@@ -172,7 +182,7 @@ export default function Users() {
           application.id === editApplication ? updatedApplication : application,
         ),
       );
-      setApplications(null);
+      setEditApplication(null);
     } catch (error) {
       console.error("Error updating application:", error);
       alert(`Failed to update application: ${error.message}`);
@@ -184,7 +194,7 @@ export default function Users() {
   }
 
   function handleStatusChange(applicationId) {
-    const application = application.find((a) => a.id === applicationId);
+    const application = applications.find((a) => a.id === applicationId);
 
     let newStatus;
     if (application.status === "Applied") {
@@ -242,7 +252,7 @@ export default function Users() {
   // }
 
   const applicationToEdit = editApplication
-    ? applications.find((application) => application.id === editApplication)
+    ? applications?.find((application) => application.id === editApplication)
     : null;
   return (
     <div className="flex bg-stone-200 min-h-screen mx-20">
@@ -258,6 +268,26 @@ export default function Users() {
               onAvatarChange={handleAvatarChange}
             />
             <UserInfo user={user} applicationsAdded={applicationsAdded} />
+          </div>
+
+          <div className="md:w-11/12 w-2/3">
+            <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+            {searchTerm && (
+              <div className="absolute bg-white shadow-lg rounded-lg w-1/3  mx-10 z-50">
+                {filteredApplications.map((application) => (
+                  <div
+                    key={application.id}
+                    className="p-3 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      setSearchTerm("");
+                      setEditApplication(application.id);
+                    }}
+                  >
+                    {application.companyname} - {application.jobtitle}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="flex justify-center ">
             {error && (
@@ -309,7 +339,7 @@ export default function Users() {
       <section className="flex flex-col  items-center bg-stone-300 md:w-1/4 w-full text-shadow-lg  px-2">
         <div>
           <h3 className="text-lime-800 text-4xl font-semibold  mt-10">
-            Interviews
+            Upcoming Interviews:
           </h3>
         </div>
         <div className="bg-lime-300 rounded-xl text-3xl p-10 mt-8 w-2/3 shadow-lg "></div>
@@ -331,7 +361,8 @@ export default function Users() {
 
       {deleteApplication && (
         <DeleteApplicationCard
-          onSave={handleDeleteApplication}
+          applications={applications}
+          onDelete={handleConfirmDelete}
           onCancel={handleCancelDelete}
         />
       )}

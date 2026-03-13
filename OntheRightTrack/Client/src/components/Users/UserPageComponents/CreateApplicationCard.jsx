@@ -106,10 +106,10 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
                 onChange={handleChange}
                 style={{ maxWidth: "100%" }}
               >
-                <option value="Applied">Applied</option>
-                <option value="Interviewing">Interviewing</option>
-                <option value="Offer">Offer</option>
-                <option value="Rejected">Rejected</option>
+                <option value="Applied"> 🟡 Applied</option>
+                <option value="Interviewing"> 🔵 Interviewing</option>
+                <option value="Offer"> 🟢 Offer</option>
+                <option value="Rejected"> 🔴 Rejected</option>
               </select>
             </label>
           </div>

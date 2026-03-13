@@ -13,14 +13,13 @@ export default function AllApplications({
 
   return (
     <section className=" shadow-md bg-lime-500 p-6 mb-6">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-center items-center mb-4">
         <h2 className="text-xl font-bold text-slate-800">
           Active Applications
         </h2>
-        <h2 className="text-xl font-bold text-slate-800">Status</h2>
       </div>
       <div className="md:flex flex-wrap justify-center ">
-        {applications.map((application) => (
+        {applications?.map((application) => (
           <div
             key={application.id}
             className=" rounded-xl shadow-md mb-5 w-1/3 mx-2 "
@@ -30,7 +29,7 @@ export default function AllApplications({
                 onClick={() => toggleExpand(application.id)}
                 className="flex-1 text-left font-semibold text-slate-900 hover:text-slate-600  transition flex items-center gap-2"
               >
-                <span className="text-lg font-bold">
+                <span className="md:text-lg font-bold">
                   {expandedId === application.id ? "-" : "+"}{" "}
                   {application.jobtitle} for {application.companyname} on{" "}
                   {application.applicationdate.split("T")[0]}
@@ -47,31 +46,31 @@ export default function AllApplications({
             {expandedId === application.id && (
               <div className="p-4 border-t border-lime-800 shadow-md bg-lime-300">
                 <p className="mb-2">
-                  <strong>Company: </strong>
+                  <strong> 🏢 Company: </strong>
                   {application.companyname}
                 </p>
                 <p className="mb-2">
-                  <strong>Job Title: </strong>
+                  <strong> 💼 Job Title: </strong>
                   {application.jobtitle}
                 </p>
                 <p className="mb-2">
-                  <strong>location: </strong>
+                  <strong> 📍 Location: </strong>
                   {application.location}
                 </p>
                 <p className="mb-2">
-                  <strong>Application Date: </strong>
+                  <strong> 📅 Application Date: </strong>
                   {application.applicationdate.split("T")[0]}
                 </p>
                 <p className="mb-2">
-                  <strong>Status: </strong>
+                  <strong> 🟢 Status: </strong>
                   {application.status}
                 </p>
                 <p className="mb-2">
-                  <strong>Job URL: </strong>
+                  <strong> 🔗 Job URL: </strong>
                   {application.joburl}
                 </p>
                 <p className="mb-2">
-                  <strong>Notes: </strong>
+                  <strong> ✏ Notes: </strong>
                   {application.notes}
                 </p>
                 <button

@@ -8,7 +8,7 @@ export default function DeleteApplicationCard({
   const [selectedApplicationId, setSelectedApplicationId] = useState("");
 
   function handleSubmit(e) {
-    e.prevenetDefault();
+    e.preventDefault();
 
     if (!selectedApplicationId) {
       alert("Please select a application to delete");
@@ -19,7 +19,7 @@ export default function DeleteApplicationCard({
       (a) => a.id === parseInt(selectedApplicationId),
     );
     const confirmDelete = window.confirm(
-      `Are you sure you want to delete "${applicationToDelete.jobtitle}" at "${applicationToDelete.company}"? This action cannot be undone.`,
+      `Are you sure you want to delete "${applicationToDelete.jobtitle}" at "${applicationToDelete.companyname}"? This action cannot be undone.`,
     );
 
     if (confirmDelete) {
@@ -42,9 +42,9 @@ export default function DeleteApplicationCard({
               className="bg-white w-full border-2 p-2"
             >
               <option value="">--Choose a application--</option>
-              {applications.map((application) => (
+              {applications?.map((application) => (
                 <option key={application.id} value={application.id}>
-                  {application.jobtitle} at {application.company}
+                  {application.jobtitle} at {application.companyname}
                 </option>
               ))}
             </select>
