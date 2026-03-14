@@ -12,7 +12,7 @@ export default function UserInfo({ user, applicationsAdded }) {
     <div className="flex-col">
       <section className="md:flex flex-row mx-10  ">
         <div className="md:text-lg font-semibold bg-lime-300 p-5 my-2 rounded-lg md:ml-6">
-          <h3 className="font-bold underline md:text-2xl mb-6 text-lime-800">
+          <h3 className="font-bold  md:text-2xl mb-6 text-lime-900">
             Account Infromation
           </h3>
           <p>
@@ -29,7 +29,7 @@ export default function UserInfo({ user, applicationsAdded }) {
           <h3 className="font-bold text-lime-900 md:mt-5  ">
             Current application Count:{" "}
           </h3>
-          <h4 className="md:text-9xl text-4xl pb-5 lg:mt-10">
+          <h4 className="lg:text-9xl text-3xl pb-5 lg:mt-10">
             {" "}
             {applicationsAdded}
           </h4>

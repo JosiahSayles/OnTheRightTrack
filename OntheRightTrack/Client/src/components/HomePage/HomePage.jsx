@@ -23,7 +23,7 @@ export default function HomePage() {
     <>
       <section className="flex justify-center   min-h-screen ">
         <div className="bg-lime-900 md:w-1/2 text-shadow-lg w-full px-2  ">
-          <h1 className=" text-xl md:text-6xl font-bold md:pt-10 md:px-10 text-lime-400  mx-10 md:mx-20 mx-5 mt-5 pb-3">
+          <h1 className=" lexend-giga text-xl md:text-6xl font-bold md:pt-10 md:px-10 text-lime-400  mx-10 md:mx-20 mx-5 mt-5 pb-3">
             On the Right Track!
           </h1>
           <h2 className="md:text-2xl font-semibold md:px-15 py-2 text-white bg-lime-400 md:w-3/4 md:ml-32 px-4  mx-10 ">

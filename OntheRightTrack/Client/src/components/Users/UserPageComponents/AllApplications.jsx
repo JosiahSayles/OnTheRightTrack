@@ -21,15 +21,13 @@ export default function AllApplications({
   return (
     <section className=" shadow-md bg-lime-500 p-6 mb-6">
       <div className="flex justify-center items-center mb-4">
-        <h2 className="text-xl font-bold text-slate-800">
-          Active Applications
-        </h2>
+        <h2 className="text-xl font-bold text-slate-800">Active</h2>
       </div>
       <div className="md:flex flex-wrap justify-center lg: ">
         {applications?.map((application) => (
           <div
             key={application.id}
-            className=" rounded-xl shadow-md mb-5 w-1/4 mx-2 "
+            className=" rounded-xl shadow-md mb-5 md:w-1/4 mx-2 "
           >
             <div className="flex flex-col justify-center items-center p-3 bg-lime-300 rounded-xl  ">
               <button
@@ -37,14 +35,14 @@ export default function AllApplications({
                 className="flex-1 text-left font-semibold text-slate-900 hover:text-slate-600  transition flex items-center gap-2"
               >
                 <span className="md:text-lg font-bold">
-                  {expandedId === application.id ? "-" : "+"}{" "}
+                  {expandedId === application.id ? "➖" : "➕"}{" "}
                   {application.jobtitle} at {application.companyname}{" "}
                 </span>{" "}
                 {formatDate(application.applicationdate)}
               </button>
               <button
                 onClick={() => onStatusChange(application.id)}
-                className="bg-lime-700  shadow-md text-white px-4 py-1 ml-4 hover:bg-lime-800 hover:text-white transition"
+                className="bg-lime-700  shadow-md text-white px-1 md:px-4 py-1 md:ml-4 hover:bg-lime-800 hover:text-white transition"
               >
                 {application.status}
               </button>

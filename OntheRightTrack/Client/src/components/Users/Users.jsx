@@ -11,6 +11,7 @@ import DeleteApplicationCard from "./UserPageComponents/DeleteApplicationCard";
 import EditAccountCard from "./UserPageComponents/EditAccountCard";
 import EditApplicationCard from "./UserPageComponents/EditApplicationCard";
 import SearchBar from "./UserPageComponents/SearchBar";
+import "./UserPageComponents/user.css";
 
 export default function Users() {
   const { token, logout } = useAuth();
@@ -256,21 +257,21 @@ export default function Users() {
     ? applications?.find((application) => application.id === editApplication)
     : null;
   return (
-    <div className="flex bg-stone-200 min-h-screen mx-20">
+    <div className="md:flex bg-stone-200 min-h-screen xl:mx-20">
       <section className="flex-col bg-lime-900 md:w-3/4 text-shadow-lg w-full px-2">
         <div>
-          <div className="flex justify-end  mr-10 mt-5">
+          <div className="flex justify-end  md:mr-10 md:mt-5 pt-2">
             <NavLink
               to="/"
               onClick={() => logout()}
-              className=" flex bg-lime-300 text-lg text-lime-950 rounded-lg hover:bg-lime-800 hover:text-lime-300 p-2 border hover:border-lime-300  "
+              className=" flex bg-lime-300 text-lg text-lime-950 shadow-lg rounded-lg hover:bg-lime-800 hover:text-lime-300 p-2 border hover:border-lime-300  "
             >
               Logout
             </NavLink>
           </div>
 
-          <h1 className=" flex justify-center text-2xl md:text-7xl font-bold  text-lime-400 mx-5  pb-3 mb-5 ">
-            Hello {user?.firstname || "Guest"}
+          <h1 className="lexend-giga flex justify-center text-3xl md:text-7xl font-bold  text-lime-400 mx-5  pb-3 md:mb-5 ">
+            Welcome back, {user?.firstname || "Guest"}
           </h1>
           <hr className="h-[1px]  mb-5 border-0 lg:mx-50 bg-lime-400" />
           <div className="lg:flex flex-row mx-10 my-5 md:justify-evenly items-center ">
@@ -324,7 +325,7 @@ export default function Users() {
           </div>
           <hr className="h-[1px] mt-5 mb-5 border-0 mx-10 bg-lime-400" />
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center md:mb-15 pb-5">
           <div>
             <button
               onClick={handleCreateApplication}
@@ -350,9 +351,9 @@ export default function Users() {
           </div>
         </div>
       </section>
-      <section className="flex flex-col  items-center bg-stone-300 md:w-1/4 w-full text-shadow-lg  px-2">
-        <div>
-          <h3 className="text-lime-800 text-4xl font-semibold  mt-10">
+      <section className="flex flex-col  items-center bg-stone-300 md:max-w-1/4 w-full text-shadow-lg md:px-2 pb-6 ">
+        <div className="flex justify-center ">
+          <h3 className=" text-lime-800 md:text-4xl font-semibold text-2xl md:mt-10 mt-5">
             Upcoming Interviews:
           </h3>
         </div>
