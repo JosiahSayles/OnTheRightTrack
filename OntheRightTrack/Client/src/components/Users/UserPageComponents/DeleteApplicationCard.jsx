@@ -27,7 +27,7 @@ export default function DeleteApplicationCard({
     }
   }
   return (
-    <div className="fixed inset-0 bg-lime-600 bg-opacity-70 flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-lime-600/90  flex items-center justify-center p-4">
       <div className="bg-stone-200 rounded-xl shadow-md p-8 w-full max-w-md ">
         <h2 className="flex justify-center text-shadow-lg text-2xl bg-lime-400 rounded-lg p-4 font-bold underline text-white mb-6">
           Delete Application
@@ -39,7 +39,7 @@ export default function DeleteApplicationCard({
             <select
               value={selectedApplicationId}
               onChange={(e) => setSelectedApplicationId(e.target.value)}
-              className="bg-white w-full border-2 p-2"
+              className="bg-white w-full border-2 p-2 "
             >
               <option value="">--Choose a application--</option>
               {applications?.map((application) => (

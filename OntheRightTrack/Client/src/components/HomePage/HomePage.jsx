@@ -14,7 +14,7 @@ export default function HomePage() {
     const password = formData.get("password");
     try {
       await login({ email, password });
-      navigate("/");
+      navigate("/users");
     } catch (err) {
       setError(err.message);
     }

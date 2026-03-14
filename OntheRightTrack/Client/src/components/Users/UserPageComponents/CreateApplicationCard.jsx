@@ -39,7 +39,7 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
     }));
   }
   return (
-    <div className="fixed inset-0 bg-lime-900 bg-opacity-30 flex items-center justify-center p-4 overflow-y-auto">
+    <div className="fixed inset-0 bg-lime-600/80 flex items-center justify-center p-4 overflow-y-auto">
       <div className="bg-stone-300 rounded-xl border-2 border-black p-8 w-full max-w-2xl my-8">
         <h2 className="flex justify-center text-shadow-lg text-2xl bg-lime-400 rounded-lg p-4 font-bold underline text-white mb-6 ">
           Add New Application
@@ -47,7 +47,7 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label>
-              Company name:{" "}
+              🏢 Company name:{" "}
               <input
                 type="text"
                 name="companyname"
@@ -59,7 +59,7 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
           </div>
           <div className="mb-4">
             <label>
-              Job Title:{" "}
+              💼 Job Title:{" "}
               <input
                 type="text"
                 name="jobtitle"
@@ -72,7 +72,7 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
           </div>
           <div className="mb-4">
             <label>
-              Location (Remote, Hybrid, Onsite):{" "}
+              📍 Location (Remote, Hybrid, Onsite):{" "}
               <input
                 type="text"
                 name="location"
@@ -85,7 +85,7 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
           </div>
           <div className="mb-4">
             <label>
-              Application Date:{" "}
+              📅 Application Date:{" "}
               <input
                 type="date"
                 name="applicationdate"
@@ -98,7 +98,7 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
           </div>
           <div className="mb-4">
             <label>
-              Status:{" "}
+              🟢 Status:{" "}
               <select
                 name="status"
                 className="bg-white border-2 rounded-lg px-2 w-full"
@@ -116,7 +116,7 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
           <div>
             <div className="mb-4">
               <label>
-                Job URL:{" "}
+                🔗 Job URL:{" "}
                 <input
                   type="url"
                   name="joburl"
@@ -129,7 +129,7 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
             </div>
             <div className="mb-4 ">
               <label>
-                Notes :{" "}
+                ✏ Notes :{" "}
                 <textarea
                   name="notes"
                   className="bg-white border-2 rounded-lg w-full px-2 h-1/8 resize-none"

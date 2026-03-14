@@ -2,6 +2,7 @@ import { useState, useEffect, use } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../Auth/AuthContext";
 import { useApi } from "../API/APIContext";
+import { NavLink } from "react-router";
 import Avatar from "./UserPageComponents/Avatar";
 import UserInfo from "./UserPageComponents/UserInfo";
 import CreateApplicationCard from "./UserPageComponents/CreateApplicationCard";
@@ -36,7 +37,7 @@ export default function Users() {
   const applicationsAdded = applications?.length || 0;
   const filteredApplications = applications
     ? applications.filter((application) =>
-        `${application.companyname} ${application.title} ${application.status}`
+        `${application.companyname} ${application.jobtitle} ${application.status}`
           .toLowerCase()
           .includes(searchTerm.toLowerCase()),
       )
@@ -258,9 +259,20 @@ export default function Users() {
     <div className="flex bg-stone-200 min-h-screen mx-20">
       <section className="flex-col bg-lime-900 md:w-3/4 text-shadow-lg w-full px-2">
         <div>
-          <h1 className=" flex justify-center text-2xl md:text-7xl font-bold md:pt-10 text-lime-400 mx-5  pb-3 mb-10 ">
+          <div className="flex justify-end  mr-10 mt-5">
+            <NavLink
+              to="/"
+              onClick={() => logout()}
+              className=" flex bg-lime-300 text-lg text-lime-950 rounded-lg hover:bg-lime-800 hover:text-lime-300 p-2 border hover:border-lime-300  "
+            >
+              Logout
+            </NavLink>
+          </div>
+
+          <h1 className=" flex justify-center text-2xl md:text-7xl font-bold  text-lime-400 mx-5  pb-3 mb-5 ">
             Hello {user?.firstname || "Guest"}
           </h1>
+          <hr className="h-[1px]  mb-5 border-0 lg:mx-50 bg-lime-400" />
           <div className="lg:flex flex-row mx-10 my-5 md:justify-evenly items-center ">
             <Avatar
               user={user}
@@ -301,6 +313,7 @@ export default function Users() {
             <h2 className="text-xl md:text-6xl font-bold md: text-lime-400 mx-5 mt-2 pb-3">
               {user?.firstname || "Guest"}'s Applications
             </h2>
+
             <div className="md:mx-10 mx-2 mt-5">
               <AllApplications
                 applications={applications}
@@ -309,6 +322,7 @@ export default function Users() {
               />
             </div>
           </div>
+          <hr className="h-[1px] mt-5 mb-5 border-0 mx-10 bg-lime-400" />
         </div>
         <div className="flex justify-center">
           <div>

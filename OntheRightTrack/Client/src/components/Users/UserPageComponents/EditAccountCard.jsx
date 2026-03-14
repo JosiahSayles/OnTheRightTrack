@@ -20,7 +20,7 @@ export default function EditAccountCard({ user, onUpdate, onCancel }) {
     }));
   }
   return (
-    <div className="fixed inset-0 bg-lime-900 bg-opacity-30 flex items-center justify-center p-4 overflow-y-auto">
+    <div className="fixed inset-0 bg-lime-600/80  flex items-center justify-center p-4 overflow-y-auto">
       <div className="bg-stone-300 rounded-xl border-2 border-black p-8 w-full max-w-2xl my-8">
         <h2 className="flex justify-center text-shadow-lg text-2xl bg-lime-400 rounded-lg p-4 font-bold underline text-white mb-6 ">
           Edit Account information
