@@ -11,19 +11,13 @@ import DeleteApplicationCard from "./UserPageComponents/DeleteApplicationCard";
 import EditAccountCard from "./UserPageComponents/EditAccountCard";
 import EditApplicationCard from "./UserPageComponents/EditApplicationCard";
 import SearchBar from "./UserPageComponents/SearchBar";
+import UpcomingInterviewsCard from "./UserPageComponents/UpcomingInterviewsCard";
 import "./UserPageComponents/user.css";
 
 export default function Users() {
   const { token, logout } = useAuth();
   const { request } = useApi();
   const navigate = useNavigate();
-
-  // const user = {
-  //   firstname: "Josiah",
-  //   lastname: "Sayles",
-  //   email: "Josiah.Sayles@gmail.com",
-  //   password: "12345678",
-  // };
 
   const [user, setUser] = useState(null);
   const [applications, setApplications] = useState([]);
@@ -105,19 +99,21 @@ export default function Users() {
     setEditAccount(false);
   }
 
-  async function handleAvatarChange(imageUrl) {
+  async function handleAvatarChange(file) {
     try {
+      const formData = new FormData();
+      formData.append("avatarurl", file);
+
       const updateUser = await request(`/users/${user.id}`, {
         method: "PUT",
-        body: JSON.stringify({ avatar: imageUrl }),
+        body: formData,
       });
       setUser(updateUser);
     } catch (error) {
       console.error("Error updating avatar:", error);
-      alert(`Failed to update avatar:${error.message}`);
+      alert(`Failed to update avatar: ${error.message}`);
     }
   }
-
   function handleCreateApplication() {
     setCreateApplication(true);
   }
@@ -353,11 +349,8 @@ export default function Users() {
       </section>
       <section className="flex flex-col  items-center bg-stone-300 md:max-w-1/4 w-full text-shadow-lg md:px-2 pb-6 ">
         <div className="flex justify-center ">
-          <h3 className=" text-lime-800 md:text-4xl font-semibold text-2xl md:mt-10 mt-5">
-            Upcoming Interviews:
-          </h3>
+          <UpcomingInterviewsCard applications={applications} />
         </div>
-        <div className="bg-lime-300 rounded-xl text-3xl p-10 mt-8 w-2/3 shadow-lg "></div>
       </section>
       {editAccount && (
         <EditAccountCard

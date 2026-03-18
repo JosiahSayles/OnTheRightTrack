@@ -8,20 +8,26 @@ export default function Avatar({ user, onEditAccount, onAvatarChange }) {
   function handleImageChange(e) {
     if (!hasUser || typeof onAvatarChange !== "function") return;
 
-    const file = e.target.files && e.target.files[0];
-    if (file) {
-      if (!file.type.startsWith("image/")) {
-        alert("Please select and image file");
-        return;
-      }
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-      const imageUrl = URL.createObjectURL(file);
-      onAvatarChange(imageUrl);
+    if (!file.type.startsWith("image/")) {
+      alert("Please select an image file");
+      return;
     }
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert("Image must be under 2MB");
+      return;
+    }
+
+    onAvatarChange(file);
+
+    e.target.value = null;
   }
 
   return (
-    <div classname="flex gap-4">
+    <div className="flex-col gap-4">
       <div
         className={`relative w-30 h-30 md:w-40 md:h-40 lg:w-100 lg:h-100 rounded-4xl shadow-md border-2 border-slate-800 flex items-center justify-center text-lg font-semibold bg-white overflow-hidden ${hasUser ? "cursor-pointer" : "cursor-default"}`}
         onMouseEnter={() => hasUser && setIsHovering(true)}
@@ -67,7 +73,7 @@ export default function Avatar({ user, onEditAccount, onAvatarChange }) {
               : "opacity-60 cursor-not-allowed"
           }`}
         >
-          Edit account
+          Edit Account
         </button>
       </div>
     </div>
