@@ -11,15 +11,32 @@ export function ApiProvider({ children }) {
   if (token) headers["Authorization"] = `Bearer ${token}`;
 
   const request = useCallback(
-    async (resource, options) => {
+    async (resource, options = {}) => {
+      const isFormData = options.body instanceof FormData;
+
+      const headers = {};
+
+      if (!isFormData) {
+        headers["Content-Type"] = "application/json";
+      }
+
+      if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+      }
+
       const response = await fetch(API + resource, {
         ...options,
         headers,
       });
-      const isJson = /json/.test(response.headers.get("Content-Type"));
+
+      const isJson = response.headers.get("Content-Type")?.includes("json");
+
       const result = isJson ? await response.json() : undefined;
-      if (!response.ok)
+
+      if (!response.ok) {
         throw Error(result?.message ?? "Something went wrong :(");
+      }
+
       return result;
     },
     [token],

@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-export default function CreateApplicationCard({ onSave, onCancel }) {
+export default function CreateApplicationCard({
+  onSave,
+  onCancel,
+  documents = [],
+}) {
+  const resumes = documents.filter((d) => d.type === "resume");
+  const coverLetters = documents.filter((d) => d.type === "cover_letter");
   const [formData, setFormData] = useState({
     companyname: "",
     jobtitle: "",
@@ -9,6 +15,8 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
     status: "Applied",
     joburl: "",
     notes: "",
+    resume_id: "",
+    cover_letter_id: "",
   });
 
   function handleSubmit(e) {
@@ -28,7 +36,12 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
       alert("Please enter a application date");
       return;
     }
-    onSave(formData);
+    const cleanedData = {
+      ...formData,
+      resume_id: formData.resume_id || null,
+      cover_letter_id: formData.cover_letter_id || null,
+    };
+    onSave(cleanedData);
   }
 
   function handleChange(e) {
@@ -138,6 +151,42 @@ export default function CreateApplicationCard({ onSave, onCancel }) {
                   onChange={handleChange}
                   style={{ maxWidth: "100%" }}
                 />
+              </label>
+            </div>
+            <div className="mb-4">
+              <label>
+                📄 Resume:
+                <select
+                  name="resume_id"
+                  className="bg-white border-2 rounded-lg px-2 w-full"
+                  value={formData.resume_id}
+                  onChange={handleChange}
+                >
+                  <option value="">Select Resume (optional)</option>
+                  {resumes.map((doc) => (
+                    <option key={doc.id} value={doc.id}>
+                      {doc.filename}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            <div className="mb-4">
+              <label>
+                📝 Cover Letter:
+                <select
+                  name="cover_letter_id"
+                  className="bg-white border-2 rounded-lg px-2 w-full"
+                  value={formData.cover_letter_id}
+                  onChange={handleChange}
+                >
+                  <option value="">Select Cover Letter (optional)</option>
+                  {coverLetters.map((doc) => (
+                    <option key={doc.id} value={doc.id}>
+                      {doc.filename}
+                    </option>
+                  ))}
+                </select>
               </label>
             </div>
             <button

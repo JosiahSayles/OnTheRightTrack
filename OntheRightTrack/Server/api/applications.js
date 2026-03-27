@@ -41,6 +41,8 @@ router.post(
       status,
       joburl,
       notes,
+      resume_id,
+      cover_letter_id,
     } = req.body;
     const application = await createJobApplication(
       companyname,
@@ -51,6 +53,8 @@ router.post(
       joburl,
       notes,
       req.user.id,
+      resume_id,
+      cover_letter_id,
     );
     res.status(201).send(application);
   },

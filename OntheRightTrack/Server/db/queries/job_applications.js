@@ -9,11 +9,13 @@ export async function createJobApplication(
   joburl,
   notes,
   user_id,
+  resume_id,
+  cover_letter_id,
 ) {
   const sql = `
-    INSERT INTO job_applications (companyname, jobtitle, location, applicationdate, status, joburl, notes, user_id)
+    INSERT INTO job_applications (companyname, jobtitle, location, applicationdate, status, joburl, notes, user_id, resume_id, cover_letter_id)
     VALUES
-    ($1, $2, $3, $4, $5, $6, $7, $8)
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
     RETURNING *
     `;
   const {
@@ -27,6 +29,8 @@ export async function createJobApplication(
     joburl,
     notes,
     user_id,
+    resume_id,
+    cover_letter_id,
   ]);
   return job_application;
 }

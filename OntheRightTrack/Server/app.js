@@ -3,6 +3,7 @@ import getUserFromToken from "./middleware/getUserFromToken.js";
 import userRouter from "./api/users.js";
 import applicationRouter from "./api/applications.js";
 import cors from "cors";
+import documentRouter from "./api/documents.js";
 
 const app = express();
 export default app;
@@ -13,6 +14,8 @@ app.use(getUserFromToken);
 app.use(express.urlencoded({ extended: true }));
 app.use("/users", userRouter);
 app.use("/applications", applicationRouter);
+app.use("/documents", documentRouter);
+app.use("/uploads", express.static("uploads"));
 
 app.use((err, req, res, next) => {
   switch (err.code) {
