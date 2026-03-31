@@ -32,10 +32,31 @@ SELECT * FROM users WHERE email=$1
 
 export async function getUserById(id) {
   const sql = `
-    SELECT * FROM users WHERE id=$1
+    SELECT id, firstname, lastname, email, avatarurl FROM users WHERE id=$1
     `;
   const {
     rows: [user],
   } = await db.query(sql, [id]);
+  return user;
+}
+
+export async function updateUserInDB(id, fields) {
+  const keys = Object.keys(fields);
+
+  const setClause = keys.map((key, index) => `${key}=$${index + 1}`).join(", ");
+
+  const values = Object.values(fields);
+
+  const sql = `
+    UPDATE users
+    SET ${setClause}
+    WHERE id=$${keys.length + 1}
+    RETURNING id, firstname, lastname, email, avatar
+  `;
+
+  const {
+    rows: [user],
+  } = await db.query(sql, [...values, id]);
+
   return user;
 }
