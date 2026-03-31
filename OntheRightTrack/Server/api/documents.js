@@ -1,5 +1,6 @@
 import express from "express";
 import multer from "multer";
+import path from "path";
 
 import {
   createDocument,
@@ -9,7 +10,17 @@ import {
 } from "../db/queries/documents.js";
 import requireUser from "../middleware/requireUser.js";
 
-const upload = multer({ dest: "uploads/" });
+const storage = multer.diskStorage({
+  destination: "uploads/",
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const ext = path.extname(file.originalname);
+
+    cb(null, `${uniqueSuffix}${ext}`);
+  },
+});
+
+const upload = multer({ storage });
 const router = express.Router();
 
 export default router;
@@ -32,14 +43,10 @@ router.post("/", requireUser, upload.single("file"), async (req, res, next) => {
       return res.status(400).send("No file uploaded");
     }
 
-    const fileurl = `/uploads/${req.file.filename}`;
+    const filename = req.body.filename || file.originalname;
+    const fileurl = `${process.env.API_URL}/uploads/${req.file.filename}`;
 
-    const document = await createDocument(
-      type,
-      file.filename,
-      fileurl,
-      req.user.id,
-    );
+    const document = await createDocument(type, filename, fileurl, req.user.id);
 
     res.status(201).send(document);
   } catch (error) {

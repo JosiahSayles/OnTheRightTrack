@@ -12,11 +12,11 @@ export default function DocumentCard({ doc, onDelete }) {
   }
 
   return (
-    <div className="border p-4 rounded-xl flex justify-between items-center">
+    <div className="border p-4 mx-1 bg-gray-300 rounded-xl flex-col justify-between items-center">
       <div>
         <p className="font-semibold ">{doc.filename}</p>
-        <p className="text-sm text-gray-500">{doc.type}</p>
-        <p className="text-xs text-gray-400">
+        <p className="text-lg text-black ">{doc.type}</p>
+        <p className="text-xs text-black">
           {new Date(doc.created_at).toLocaleDateString()}
         </p>
       </div>
@@ -31,7 +31,7 @@ export default function DocumentCard({ doc, onDelete }) {
           View
         </a>
 
-        <button onClick={handleDelete} className="text-red-500 cursor:pointer">
+        <button onClick={handleDelete} className="text-lime-700 cursor:pointer">
           Delete
         </button>
       </div>

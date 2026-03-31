@@ -29,7 +29,7 @@ export default function AllApplications({
             key={application.id}
             className=" rounded-xl shadow-md mb-5 md:w-1/4 mx-2 "
           >
-            <div className="flex flex-col justify-center items-center p-3 bg-lime-300 rounded-xl  ">
+            <div className="flex flex-col justify-center items-center p-3 bg-lime-600 rounded-xl  ">
               <button
                 onClick={() => toggleExpand(application.id)}
                 className="flex-1 text-left font-semibold text-slate-900 hover:text-slate-600  transition flex items-center gap-2"
@@ -42,7 +42,7 @@ export default function AllApplications({
               </button>
               <button
                 onClick={() => onStatusChange(application.id)}
-                className="bg-lime-700  shadow-md text-white px-1 md:px-4 py-1 md:ml-4 hover:bg-lime-800 hover:text-white transition"
+                className="bg-lime-300 shadow-md text-black px-1 md:px-4 py-1 md:ml-4 hover:bg-lime-800 hover:text-white transition"
               >
                 {application.status}
               </button>
