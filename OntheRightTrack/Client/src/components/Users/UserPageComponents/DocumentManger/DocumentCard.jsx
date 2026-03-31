@@ -1,12 +1,11 @@
 const API = import.meta.env.VITE_API_URL;
+import { useApi } from "../../../API/APIContext";
 
 export default function DocumentCard({ doc, onDelete }) {
+  const { request } = useApi();
   async function handleDelete() {
-    await fetch(`${API}/documents/${doc.id}`, {
+    await request(`/documents/${doc.id}`, {
       method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.token}`,
-      },
     });
 
     onDelete();
@@ -32,7 +31,7 @@ export default function DocumentCard({ doc, onDelete }) {
           View
         </a>
 
-        <button onClick={handleDelete} className="text-red-500">
+        <button onClick={handleDelete} className="text-red-500 cursor:pointer">
           Delete
         </button>
       </div>

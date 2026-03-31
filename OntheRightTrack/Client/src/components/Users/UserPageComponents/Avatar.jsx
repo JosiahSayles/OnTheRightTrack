@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function Avatar({ user, onEditAccount, onAvatarChange }) {
   const [isHovering, setIsHovering] = useState(false);
   const hasUser = Boolean(user);
-  const avatarSrc = user?.avatar || null;
+  const avatarSrc = user?.avatarurl || null;
 
   function handleImageChange(e) {
     if (!hasUser || typeof onAvatarChange !== "function") return;
@@ -37,7 +37,7 @@ export default function Avatar({ user, onEditAccount, onAvatarChange }) {
           <img
             src={avatarSrc}
             alt="User avatar"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-lg "
           />
         ) : (
           <span className=" text-slate-600">

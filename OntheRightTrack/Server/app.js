@@ -29,25 +29,6 @@ app.use((err, req, res, next) => {
       next(err);
   }
 });
-// app.use("/uploads", express.static("uploads"));
-
-// app.put("/users/:id", upload.single("avatar"), async (req, res) => {
-//   try {
-//     if (!req.file) {
-//       return res.status(400).json({ message: "No file uploaded" });
-//     }
-
-//     const avatarUrl = `/uploads/${req.file.filename}`;
-
-//     const updatedUser = await updateUserInDB(req.params.id, {
-//       avatar: avatarUrl,
-//     });
-
-//     res.json(updatedUser);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
 
 app.use((err, req, res, next) => {
   console.error(err);

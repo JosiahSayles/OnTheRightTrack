@@ -6,6 +6,8 @@ import { createUser, getUserByEmailandPassword } from "../db/queries/users.js";
 import requireBody from "../middleware/requireBody.js";
 import { createToken } from "../utils/jwt.js";
 import getUserFromToken from "../middleware/getUserFromToken.js";
+import { updateUserAvatar } from "../middleware/avatarContorller.js";
+import upload from "../middleware/upload.js";
 
 router.post(
   "/register",
@@ -30,3 +32,10 @@ router.post("/login", requireBody(["email", "password"]), async (req, res) => {
 router.get("/user", getUserFromToken, async (req, res) => {
   res.send(req.user);
 });
+
+router.put(
+  "/:id/avatar",
+  getUserFromToken,
+  upload.single("avatar"),
+  updateUserAvatar,
+);

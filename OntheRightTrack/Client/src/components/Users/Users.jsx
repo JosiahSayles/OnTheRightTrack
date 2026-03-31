@@ -102,9 +102,9 @@ export default function Users() {
   async function handleAvatarChange(file) {
     try {
       const formData = new FormData();
-      formData.append("avatarurl", file);
+      formData.append("avatar", file);
 
-      const updateUser = await request(`/users/${user.id}`, {
+      const updateUser = await request(`/users/${user.id}/avatar`, {
         method: "PUT",
         body: formData,
       });

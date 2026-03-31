@@ -51,7 +51,7 @@ export async function updateUserInDB(id, fields) {
     UPDATE users
     SET ${setClause}
     WHERE id=$${keys.length + 1}
-    RETURNING id, firstname, lastname, email, avatar
+    RETURNING id, firstname, lastname, email, avatarurl
   `;
 
   const {
