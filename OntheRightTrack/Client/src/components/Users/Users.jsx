@@ -214,40 +214,40 @@ export default function Users() {
     );
   }
   // request to update status with DB
-  // async function handleStatusChange(applicationId) {
-  //   try {
-  //     const application = applications.find(
-  //       (application) => application.id === applicationId,
-  //     );
+  async function handleStatusChange(applicationId) {
+    try {
+      const application = applications.find(
+        (application) => application.id === applicationId,
+      );
 
-  //     let newStatus;
-  //     if (application.applicationStatus === "Applied") {
-  //       newStatus = "Interviewing";
-  //     } else if (application.appliactionStatus === "Interviewing") {
-  //       newStatus = "Offer";
-  //     } else if (application.appliactionStatus === "Offer") {
-  //       newStatus = "Rejected";
-  //     } else {
-  //       newStatus = "Applied";
-  //     }
+      let newStatus;
+      if (application.status === "Applied") {
+        newStatus = "Interviewing";
+      } else if (application.status === "Interviewing") {
+        newStatus = "Offer";
+      } else if (application.status === "Offer") {
+        newStatus = "Rejected";
+      } else {
+        newStatus = "Applied";
+      }
 
-  //     await request(`/users/applications/${applicationId}`, {
-  //       method: "PATCH",
-  //       body: JSON.stringify({ appliactionStatus: newStatus }),
-  //     });
+      await request(`/applications/${applicationId}`, {
+        method: "PATCH",
+        body: JSON.stringify({ status: newStatus }),
+      });
 
-  //     setApplications((prev) =>
-  //       prev.map((application) =>
-  //         application.id === applicationId
-  //           ? { ...application, applicationStatus: newStatus }
-  //           : application,
-  //       ),
-  //     );
-  //   } catch (error) {
-  //     console.error("Error updating application status:", error);
-  //     alert(`Failed to update status: ${error.message}`);
-  //   }
-  // }
+      setApplications((prev) =>
+        prev.map((application) =>
+          application.id === applicationId
+            ? { ...application, status: newStatus }
+            : application,
+        ),
+      );
+    } catch (error) {
+      console.error("Error updating application status:", error);
+      alert(`Failed to update status: ${error.message}`);
+    }
+  }
 
   const applicationToEdit = editApplication
     ? applications?.find((application) => application.id === editApplication)

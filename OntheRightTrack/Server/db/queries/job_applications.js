@@ -107,3 +107,11 @@ export async function updateApplication(
   ]);
   return application;
 }
+
+export async function updateJobStatus(id, status) {
+  const sql = `UPDATE job_applications
+  SET status =$2 WHERE id= $1 RETURNING *`;
+
+  const { rows: job_application } = await db.query(sql, [id, status]);
+  return job_application;
+}

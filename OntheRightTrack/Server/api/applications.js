@@ -9,6 +9,7 @@ import {
   getApplicationsByUserId,
   deleteApplication,
   updateApplication,
+  updateJobStatus,
 } from "../db/queries/job_applications.js";
 import requireBody from "../middleware/requireBody.js";
 import requireUser from "../middleware/requireUser.js";
@@ -118,41 +119,14 @@ router.put(
   },
 );
 
-router.patch(
-  "/:id",
-  requireUser,
-  requireBody([
-    "companyname",
-    "jobtitle",
-    "location",
-    "applicationdate",
-    "status",
-    "joburl",
-    "notes",
-  ]),
-  async (req, res) => {
-    if (req.application.user_id !== req.user.id)
-      return res.status(403).send("This is not your application.");
-    const {
-      companyname,
-      jobtitle,
-      location,
-      applicationdate,
-      status,
-      joburl,
-      notes,
-    } = req.body;
-    const application = await updateApplication(
-      req.application.id,
-      companyname,
-      jobtitle,
-      location,
-      applicationdate,
-      status,
-      joburl,
-      notes,
-      req.user.id,
-    );
-    res.send(application);
-  },
-);
+router.patch("/:id", requireUser, requireBody(["status"]), async (req, res) => {
+  if (req.application.user_id !== req.user.id)
+    return res.status(403).send("This is not your application.");
+  const { status } = req.body;
+  const application = await updateJobStatus(
+    req.application.id,
+    status,
+    req.user.id,
+  );
+  res.send(application);
+});
