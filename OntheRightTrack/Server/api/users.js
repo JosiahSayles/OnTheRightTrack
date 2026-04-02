@@ -24,7 +24,8 @@ router.post(
 router.post("/login", requireBody(["email", "password"]), async (req, res) => {
   const { email, password } = req.body;
   const user = await getUserByEmailandPassword(email, password);
-  if (!user) return res.status(401).send("Invalid Email or Password.");
+  if (!user)
+    return res.status(401).json({ message: "Invalid email or password" });
   const token = createToken({ id: user.id });
   res.send({ token });
 });
