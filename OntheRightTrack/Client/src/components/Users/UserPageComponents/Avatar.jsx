@@ -27,7 +27,7 @@ export default function Avatar({ user, onEditAccount, onAvatarChange }) {
   }
 
   return (
-    <div className="flex-col gap-4">
+    <div className="flex-col flex items-center gap-4">
       <div
         className={`relative w-30 h-30 md:w-40 md:h-40 lg:w-100 lg:h-100 rounded-4xl shadow-md border-2 border-slate-800 flex items-center justify-center text-lg font-semibold bg-white overflow-hidden ${hasUser ? "cursor-pointer" : "cursor-default"}`}
         onMouseEnter={() => hasUser && setIsHovering(true)}
@@ -67,7 +67,7 @@ export default function Avatar({ user, onEditAccount, onAvatarChange }) {
         <button
           onClick={() => hasUser && onEditAccount && onEditAccount()}
           disabled={!hasUser}
-          className={`bg-lime-400 w-full border-2 shadow-md rounded-xl border-lime-500 text-black px-7 py-2 m-2 transition ${
+          className={`bg-lime-400 w-full  border-2 shadow-md rounded-xl border-lime-500 text-black px-8 py-2 m-2 md:mt-2 transition ${
             hasUser
               ? "hover:bg-lime-600 hover:text-white"
               : "opacity-60 cursor-not-allowed"

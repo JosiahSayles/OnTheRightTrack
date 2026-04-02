@@ -53,7 +53,7 @@ export default function UploadDocumentForm({ onUpload }) {
         name="file"
         accept=".pdf,.doc,.docx"
         onChange={(e) => setFile(e.target.files[0])}
-        className="bg-lime-300 text-lg text-lime-950 shadow-lg rounded-lg hover:bg-lime-800 hover:text-lime-300  border hover:border-lime-300 px-2"
+        className="bg-lime-300 text-lg text-lime-950 shadow-lg rounded-lg hover:bg-lime-800 hover:text-lime-300  border hover:border-lime-300 w-3/4 px-2"
       />
 
       <button

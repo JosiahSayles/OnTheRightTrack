@@ -36,7 +36,7 @@ export default function DocumentManager() {
   }, [fetchDocuments]);
 
   return (
-    <div className="space-y-6 lg:flex flex-row ">
+    <div className="space-y-6 lg:flex flex-row items-center w-3/4  mb-2 ">
       <UploadDocumentForm onUpload={fetchDocuments} />
       <DocumentDropdown documents={documents} onDelete={handleDeleteDoc} />
     </div>

@@ -254,7 +254,7 @@ export default function Users() {
     : null;
   return (
     <div className="md:flex bg-stone-200 min-h-screen xl:mx-20">
-      <section className="flex-col bg-lime-900 md:w-3/4 text-shadow-lg w-full px-2">
+      <section className="flex-col bg-lime-900  md:w-3/4 text-shadow-lg  px-2">
         <div>
           <div className="flex justify-end  md:mr-10 md:mt-5 pt-2">
             <NavLink
