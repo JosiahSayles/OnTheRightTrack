@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import UploadDocumentForm from "./UploadDocumentForm.jsx";
 import DocumentList from "./DocumentsList.jsx";
 import { useApi } from "../../../API/APIContext.jsx";
+import DocumentDropdown from "./DocumentDropdown";
 
 export default function DocumentManager() {
   const [documents, setDocuments] = useState([]);
@@ -26,7 +27,8 @@ export default function DocumentManager() {
   return (
     <div className="space-y-6">
       <UploadDocumentForm onUpload={fetchDocuments} />
-      <DocumentList documents={documents} onDelete={fetchDocuments} />
+      {/* <DocumentList documents={documents} onDelete={fetchDocuments} /> */}
+      <DocumentDropdown documents={documents} />
     </div>
   );
 }

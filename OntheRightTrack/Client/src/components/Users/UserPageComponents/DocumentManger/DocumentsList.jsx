@@ -1,4 +1,5 @@
 import DocumentCard from "./DocumentCard";
+import DocumentDropdown from "./DocumentDropdown";
 
 export default function DocumentList({ documents, onDelete }) {
   if (!documents.length) return <p className="">No documents uploaded yet.</p>;
@@ -6,7 +7,11 @@ export default function DocumentList({ documents, onDelete }) {
   return (
     <div className="flex flex-wrap">
       {documents.map((doc) => (
-        <DocumentCard key={doc.id} doc={doc} onDelete={onDelete} />
+        <DocumentDropdown
+          key={doc.id}
+          documents={documents}
+          onDelete={onDelete}
+        />
       ))}
     </div>
   );
