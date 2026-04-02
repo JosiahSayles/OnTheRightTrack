@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { useApi } from "../../../API/APIContext";
+import { useState, useEffect } from "react";
 
-export default function DocumentDropdown({ documents }) {
+export default function DocumentDropdown({ documents, onDelete }) {
   const [selectedDoc, setSelectedDoc] = useState("");
 
   const groupedDocs = documents.reduce((acc, doc) => {
@@ -10,18 +9,22 @@ export default function DocumentDropdown({ documents }) {
     return acc;
   }, {});
 
-  const { request } = useApi();
-  async function handleDelete() {
-    await request(`/documents/${selected.id}`, {
-      method: "DELETE",
-    });
-
-    onDelete();
-  }
-
   const docMap = Object.values(groupedDocs).flat();
 
   const selected = docMap.find((d) => d.id === Number(selectedDoc));
+
+  async function handleDelete() {
+    if (!selected) return;
+
+    onDelete(selected.id);
+    setSelectedDoc("");
+  }
+
+  useEffect(() => {
+    if (selectedDoc && !documents.find((d) => d.id === Number(selectedDoc))) {
+      setSelectedDoc("");
+    }
+  }, [documents]);
 
   return (
     <div className="p-4 bg-gray-300 rounded-xl space-y-4 w-1/2">

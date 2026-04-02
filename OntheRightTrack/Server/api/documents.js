@@ -44,7 +44,7 @@ router.post("/", requireUser, upload.single("file"), async (req, res, next) => {
     }
 
     const filename = req.body.filename || file.originalname;
-    const fileurl = `${process.env.API_URL}/uploads/${req.file.filename}`;
+    const fileurl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
 
     const document = await createDocument(type, filename, fileurl, req.user.id);
 

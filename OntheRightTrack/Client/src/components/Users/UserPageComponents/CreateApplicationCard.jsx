@@ -153,7 +153,7 @@ export default function CreateApplicationCard({
                 />
               </label>
             </div>
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label>
                 📄 Resume:
                 <select
@@ -188,7 +188,7 @@ export default function CreateApplicationCard({
                   ))}
                 </select>
               </label>
-            </div>
+            </div> */}
             <button
               type="submit"
               className="bg-lime-400 border-2 shadow-md rounded-xl border-lime-500 text-black px-7 py-2 m-2 hover:bg-lime-600 hover:text-white transition"

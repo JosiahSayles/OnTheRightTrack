@@ -7,6 +7,18 @@ export default function DocumentManager() {
   const [documents, setDocuments] = useState([]);
   const { request } = useApi();
 
+  const groupedDocs = documents.reduce((acc, doc) => {
+    if (!acc[doc.type]) acc[doc.type] = [];
+    acc[doc.type].push(doc);
+    return acc;
+  }, {});
+
+  async function handleDeleteDoc(id) {
+    await request(`/documents/${id}`, { method: "DELETE" });
+
+    setDocuments((prev) => prev.filter((doc) => doc.id !== id));
+  }
+
   const fetchDocuments = useCallback(async () => {
     try {
       const data = await request("/documents", {
@@ -26,7 +38,7 @@ export default function DocumentManager() {
   return (
     <div className="space-y-6 lg:flex flex-row ">
       <UploadDocumentForm onUpload={fetchDocuments} />
-      <DocumentDropdown documents={documents} />
+      <DocumentDropdown documents={documents} onDelete={handleDeleteDoc} />
     </div>
   );
 }
