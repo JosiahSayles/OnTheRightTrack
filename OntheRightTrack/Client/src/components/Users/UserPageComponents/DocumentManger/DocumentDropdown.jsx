@@ -12,7 +12,7 @@ export default function DocumentDropdown({ documents }) {
 
   const { request } = useApi();
   async function handleDelete() {
-    await request(`/documents/${doc.id}`, {
+    await request(`/documents/${selected.id}`, {
       method: "DELETE",
     });
 
@@ -21,7 +21,7 @@ export default function DocumentDropdown({ documents }) {
 
   const docMap = Object.values(groupedDocs).flat();
 
-  const selected = docMap.find((d) => d.id === selectedDoc);
+  const selected = docMap.find((d) => d.id === Number(selectedDoc));
 
   return (
     <div className="p-4 bg-gray-300 rounded-xl space-y-4 w-1/2">
@@ -61,10 +61,7 @@ export default function DocumentDropdown({ documents }) {
               View
             </a>
 
-            <button
-              onClick={handleDelete}
-              className="text-black border-2 bg-lime-200 "
-            >
+            <button onClick={handleDelete} className="text-lime-600 ">
               Delete
             </button>
           </div>

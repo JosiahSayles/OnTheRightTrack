@@ -1,6 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
 import UploadDocumentForm from "./UploadDocumentForm.jsx";
-import DocumentList from "./DocumentsList.jsx";
 import { useApi } from "../../../API/APIContext.jsx";
 import DocumentDropdown from "./DocumentDropdown";
 
@@ -25,9 +24,8 @@ export default function DocumentManager() {
   }, [fetchDocuments]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 lg:flex flex-row ">
       <UploadDocumentForm onUpload={fetchDocuments} />
-      {/* <DocumentList documents={documents} onDelete={fetchDocuments} /> */}
       <DocumentDropdown documents={documents} />
     </div>
   );
