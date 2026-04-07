@@ -355,7 +355,7 @@ export default function Users() {
       {editAccount && (
         <EditAccountCard
           user={user}
-          onSave={handleSaveAccount}
+          onUpdate={handleSaveAccount}
           onCancel={handleCanelEdit}
         />
       )}

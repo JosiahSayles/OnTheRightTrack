@@ -27,7 +27,7 @@ export default function DocumentDropdown({ documents, onDelete }) {
   }, [documents]);
 
   return (
-    <div className="p-4 bg-gray-300 rounded-xl space-y-4 w-1/2">
+    <div className="p-4 bg-stone-300 shadow-lg rounded-xl space-y-4 w-1/2">
       <select
         className="p-2 rounded border w-full bg-white"
         value={selectedDoc}

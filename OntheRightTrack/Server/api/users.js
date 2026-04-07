@@ -40,3 +40,5 @@ router.put(
   upload.single("avatar"),
   updateUserAvatar,
 );
+
+router.put();
