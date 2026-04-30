@@ -19,7 +19,7 @@ export default function UserInfo({ user, applicationsAdded, documents = [] }) {
 
   return (
     <div className="flex-col">
-      <section className="md:flex flex-row mx-">
+      <section className="md:flex flex-row ">
         <div className="md:text-lg font-semibold bg-lime-300 p-5 my-2 rounded-lg md:ml-6">
           <h3 className="font-bold md:text-2xl mb-6 text-lime-900">
             Account Information
@@ -45,10 +45,10 @@ export default function UserInfo({ user, applicationsAdded, documents = [] }) {
         </div>
       </section>
 
-      <hr className="h-[1px] mt-5 mb-3 border-0 mx-10 bg-lime-400" />
+      <hr className="h-[3px] mt-5 mb-3 border-0 mx-10 bg-black" />
 
-      <section className="w-full flex flex-col items-center md:ml-10">
-        <h3 className="text-2xl font-bold text-lime-600 mb-4">Documents</h3>
+      <section className="w-full flex flex-col items-center md:ml-10  ">
+        <h3 className="text-2xl font-bold text-white mb-4">Documents</h3>
         <DocumentManager documents={documents} />
       </section>
     </div>

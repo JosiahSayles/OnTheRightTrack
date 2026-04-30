@@ -269,7 +269,7 @@ export default function Users() {
           <h1 className="lexend-giga flex justify-center text-3xl md:text-7xl font-bold  text-lime-400 mx-5  pb-3 md:mb-5 ">
             Welcome back, {user?.firstname || "Guest"}
           </h1>
-          <hr className="h-[1px]  mb-5 border-0 lg:mx-50 bg-lime-400" />
+          <hr className="h-[3px]  mb-5 border-0 lg:mx-50 bg-lime-400" />
           <div className="lg:flex flex-row mx-10 my-5 md:justify-evenly items-center ">
             <Avatar
               user={user}
@@ -305,9 +305,9 @@ export default function Users() {
               </div>
             )}
           </div>
-          <hr className="h-[1px] mt-5 mb-3 border-0 mx-10 bg-lime-400" />
+          <hr className="h-[3px] mt-5 mb-3 border-0 mx-10 bg-lime-400" />
           <div className="flex-col ">
-            <h2 className="text-xl md:text-6xl font-bold md: text-lime-400 mx-5 mt-2 pb-3">
+            <h2 className="text-xl md:text-6xl font-bold md: text-black mx-5 mt-2 pb-3">
               {user?.firstname || "Guest"}'s Applications
             </h2>
 
@@ -319,13 +319,13 @@ export default function Users() {
               />
             </div>
           </div>
-          <hr className="h-[1px] mt-5 mb-5 border-0 mx-10 bg-lime-400" />
+          <hr className="h-[3px] mt-5 mb-5 border-0 mx-10 bg-black" />
         </div>
         <div className="flex justify-center md:mb-15 pb-5">
           <div>
             <button
               onClick={handleCreateApplication}
-              className="flex-col justify-items-center w-full bg-lime-600 md:py-8 px-2 lg:py-10 xl:px-10  md:text-3xl font-semibold md:mr-2 rounded-lg mr-5 shadow-lg hover:bg-lime-200 hover:text-lime-500"
+              className="flex-col justify-items-center w-full bg-black text-white md:py-8 px-2 lg:py-10 xl:px-10  md:text-3xl font-semibold md:mr-2 rounded-lg mr-5 shadow-lg hover:bg-lime-600 hover:text-black"
             >
               <img src="/icons/add.png" alt="add icon" className="md:w-14" />{" "}
               Add <br />
@@ -335,7 +335,7 @@ export default function Users() {
           <div>
             <button
               onClick={handleDeleteApplication}
-              className="flex-col justify-items-center w-full bg-lime-600 md:py-8 px-2 lg:py-10 xl:px-10 md:text-3xl font-semibold md:mr-2 rounded-lg ml-5 shadow-lg hover:bg-lime-200 hover:text-lime-500"
+              className="flex-col justify-items-center w-full bg-black text-white md:py-8 px-2 lg:py-10 xl:px-10 md:text-3xl font-semibold md:mr-2 rounded-lg ml-5 shadow-lg hover:bg-lime-600 hover:text-black"
             >
               <img
                 src="/icons/delete.png"

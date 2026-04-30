@@ -42,7 +42,7 @@ export default function AllApplications({
               </button>
               <button
                 onClick={() => onStatusChange(application.id)}
-                className="bg-lime-300 shadow-md text-black px-1 md:px-4 py-1 md:ml-4 hover:bg-lime-800 hover:text-white transition"
+                className="bg-black shadow-md text-white px-1 md:px-4 py-1 md:ml-4 hover:bg-lime-800 hover:text-white transition"
               >
                 {application.status}
               </button>

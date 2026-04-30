@@ -33,7 +33,7 @@ export default function UploadDocumentForm({ onUpload }) {
       <select
         value={form.type}
         onChange={(e) => setForm({ ...form, type: e.target.value })}
-        className="bg-lime-600 p-1 rounded-lg font-semibold"
+        className="bg-black text-white p-1 pl-1 rounded-lg font-semibold"
       >
         <option value="resume" className="">
           Resume

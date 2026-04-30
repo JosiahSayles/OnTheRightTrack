@@ -67,7 +67,7 @@ export default function Avatar({ user, onEditAccount, onAvatarChange }) {
         <button
           onClick={() => hasUser && onEditAccount && onEditAccount()}
           disabled={!hasUser}
-          className={`bg-lime-400 w-full  border-2 shadow-md rounded-xl border-lime-500 text-black px-8 py-2 m-2 md:mt-2 transition ${
+          className={`bg-black w-full  text-white shadow-md rounded-xl border-lime-500 text-black px-8 py-2 m-2 md:mt-2 transition ${
             hasUser
               ? "hover:bg-lime-600 hover:text-white"
               : "opacity-60 cursor-not-allowed"
