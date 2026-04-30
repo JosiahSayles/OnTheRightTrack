@@ -41,4 +41,6 @@ router.put(
   updateUserAvatar,
 );
 
+//adding a User update for account information.
+
 router.put();
