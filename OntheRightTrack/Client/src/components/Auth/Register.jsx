@@ -112,12 +112,12 @@ export default function Register() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col w-1/3 ">
+        <div className="flex justify-center w-1/3 ">
           <figure>
             <img
               src="/img/Interviewing.jpg"
               alt="hiring manager interviewing another man"
-              className="md:mx-1 md:mt-5 w-full shadow-md rounded-3xl "
+              className="md:mx-1  w-full shadow-md rounded-3xl "
             />
           </figure>
         </div>
