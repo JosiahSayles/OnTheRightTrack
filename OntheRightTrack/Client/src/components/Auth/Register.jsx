@@ -112,7 +112,7 @@ export default function Register() {
             </div>
           </div>
         </div>
-        <div className="flex justify-center items-center md:w-1/3 sm:w-1/6">
+        <div className="flex justify-center items-center md:w-1/3 w-0">
           <figure>
             <img
               src="/img/Interviewing.jpg"
