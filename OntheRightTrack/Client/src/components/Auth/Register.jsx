@@ -99,17 +99,17 @@ export default function Register() {
                 Login here
               </Link>
             </p>
-            <div className="flex flex-col justify-center ">
+            <div className="flex flex-col justify-items-center ">
               <figure>
                 <img
                   src="/img/Interviewing.jpg"
                   alt="hiring manager interviewing another man"
-                  className="md:mt-10 md:mx-1 mt-2  md:w-1/2 shadow-md rounded-3xl "
+                  className="md:mt-10 md:mx-1 mt-2  md:w-1/4 shadow-md rounded-3xl "
                 />
                 <img
                   src="/img/Offer.jpg"
                   alt="hiring manager shaking hands with  potential female employee"
-                  className="md:mt-10 md:mx-1 mt-2  md:w-1/2 shadow-md rounded-3xl "
+                  className="md:mt-10 md:mx-1 mt-2  md:w-1/4 shadow-md rounded-3xl "
                 />
               </figure>
             </div>
