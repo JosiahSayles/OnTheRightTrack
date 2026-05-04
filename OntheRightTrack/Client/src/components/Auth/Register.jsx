@@ -117,7 +117,7 @@ export default function Register() {
             <img
               src="/img/Interviewing.jpg"
               alt="hiring manager interviewing another man"
-              className="md:mx-1 md:mt:15 w-full shadow-md"
+              className=" w-full shadow-md"
             />
           </figure>
         </div>
