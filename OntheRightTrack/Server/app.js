@@ -8,7 +8,17 @@ import documentRouter from "./api/documents.js";
 const app = express();
 export default app;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // local dev
+      "https://ontherighttrack.vercel.app", // production frontend
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(getUserFromToken);
 app.use(express.urlencoded({ extended: true }));
