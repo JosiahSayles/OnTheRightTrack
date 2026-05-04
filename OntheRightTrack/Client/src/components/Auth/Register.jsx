@@ -102,11 +102,11 @@ export default function Register() {
             <div className="">
               <figure>
                 <img
-                  src="/img/interviewing.jpg"
+                  src="/img/Interviewing.jpg"
                   alt="hiring manager interviewing another man"
                 />
                 <img
-                  src="/img/offer.jpg"
+                  src="/img/Offer.jpg"
                   alt="hiring manager shaking hands with  potential female employee"
                 />
               </figure>
