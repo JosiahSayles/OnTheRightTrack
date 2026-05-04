@@ -20,7 +20,7 @@ export default function UpcomingInterviewsCard({ applications, onUpdateDate }) {
           interviewingJobs.map((application) => (
             <div
               key={application.id}
-              className="bg-lime-900 border-4 p-10 mt-8 mx-5  shadow-xl flex-row justify-items-center "
+              className="bg-lime-900 border-4 p-10 mt-8 mx-5  shadow-xl flex-row  "
             >
               <h3 className="font-semibold text-4xl underline mb-2 ">
                 {application.companyname}
@@ -36,17 +36,21 @@ export default function UpcomingInterviewsCard({ applications, onUpdateDate }) {
                 {" "}
                 {application.notes || "TBD"}
               </p>
+              <div className="flex-col flex justify-center items-center">
+                <input
+                  type="date"
+                  className="mt-3 bg-white px-2  rounded-lg text-black font-semibold "
+                  value={application.interviewdate || ""}
+                  onChange={(e) => onUpdateDate(application.id, e.target.value)}
+                />
 
-              <input
-                type="date"
-                className="mt-3 p-2 text-black"
-                value={application.interviewdate || ""}
-                onChange={(e) => onUpdateDate(application.id, e.target.value)}
-              />
-
-              {application.interviewdate && (
-                <p> Interview Date: {formatDate(application.interviewdate)}</p>
-              )}
+                {application.interviewdate && (
+                  <p className="text-white mt-2 md:text-2xl bg-lime-500 p-2 ">
+                    {" "}
+                    Interview Date: {formatDate(application.interviewdate)}
+                  </p>
+                )}
+              </div>
             </div>
           ))
         ) : (
