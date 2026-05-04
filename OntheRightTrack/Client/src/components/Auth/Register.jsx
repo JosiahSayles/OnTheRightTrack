@@ -99,20 +99,6 @@ export default function Register() {
                 Login here
               </Link>
             </p>
-            <div className="flex flex-col justify-items-center ">
-              <figure>
-                <img
-                  src="/img/Interviewing.jpg"
-                  alt="hiring manager interviewing another man"
-                  className="md:mt-10 md:mx-1 mt-2  md:w-1/4 shadow-md rounded-3xl "
-                />
-                <img
-                  src="/img/Offer.jpg"
-                  alt="hiring manager shaking hands with  potential female employee"
-                  className="md:mt-10 md:mx-1 mt-2  md:w-1/4 shadow-md rounded-3xl "
-                />
-              </figure>
-            </div>
             <div>
               <ul className="lg:flex md:flex-row md:mt-50 text-lime-500 font-semibold ">
                 <li className="ml-1 lg:ml-4 hover:underline">Contact</li>
@@ -125,6 +111,20 @@ export default function Register() {
               <hr className="h-[1px] mt-5 mb-3 border-0 mx-10 bg-lime-400" />
             </div>
           </div>
+        </div>
+        <div className="flex flex-col justify-items-center ">
+          <figure>
+            <img
+              src="/img/Interviewing.jpg"
+              alt="hiring manager interviewing another man"
+              className="md:mx-1 mt-2 md:mt-10 md:w-1/4 shadow-md rounded-3xl "
+            />
+            <img
+              src="/img/Offer.jpg"
+              alt="hiring manager shaking hands with  potential female employee"
+              className="md:mx-1 mt-2  md:w-1/4 shadow-md rounded-3xl "
+            />
+          </figure>
         </div>
       </section>
     </>
