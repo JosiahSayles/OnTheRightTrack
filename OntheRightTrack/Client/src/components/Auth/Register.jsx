@@ -112,7 +112,7 @@ export default function Register() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-items-center ">
+        <div className="flex flex-col ">
           <figure>
             <img
               src="/img/Interviewing.jpg"
