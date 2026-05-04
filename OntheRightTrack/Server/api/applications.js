@@ -10,6 +10,7 @@ import {
   deleteApplication,
   updateApplication,
   updateJobStatus,
+  updateInterviewDate,
 } from "../db/queries/job_applications.js";
 import requireBody from "../middleware/requireBody.js";
 import requireUser from "../middleware/requireUser.js";
@@ -119,14 +120,32 @@ router.put(
   },
 );
 
-router.patch("/:id", requireUser, requireBody(["status"]), async (req, res) => {
-  if (req.application.user_id !== req.user.id)
-    return res.status(403).send("This is not your application.");
-  const { status } = req.body;
-  const application = await updateJobStatus(
-    req.application.id,
-    status,
-    req.user.id,
-  );
-  res.send(application);
+router.patch("/:id", requireUser, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const fields = req.body;
+
+    const application = await getApplicationById(id);
+
+    if (!application) {
+      return res.status(404).send("Application not found");
+    }
+
+    if (application.user_id !== req.user.id) {
+      return res.status(403).send("Forbidden");
+    }
+
+    if (fields.interviewdate && application.status !== "Interviewing") {
+      return res
+        .status(400)
+        .send("Can only set interview date for interviewing applications");
+    }
+
+    const updatedApplication = await updateApplication(id, req.user.id, fields);
+
+    res.status(200).json(updatedApplication);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
 });

@@ -41,8 +41,12 @@ export async function getUserById(id) {
 }
 
 export async function updateUserInDB(id, fields) {
-  const keys = Object.keys(fields);
+  const allowedFields = ["firstname", "lastname", "email", "avatarurl"];
 
+  const keys = Object.keys(fields).filter((key) => allowedFields.includes(key));
+  if (keys.length === 0) {
+    throw new Error("No valid fields provided for update");
+  }
   const setClause = keys.map((key, index) => `${key}=$${index + 1}`).join(", ");
 
   const values = Object.values(fields);

@@ -2,7 +2,11 @@ import express from "express";
 const router = express.Router();
 export default router;
 
-import { createUser, getUserByEmailandPassword } from "../db/queries/users.js";
+import {
+  createUser,
+  getUserByEmailandPassword,
+  updateUserInDB,
+} from "../db/queries/users.js";
 import requireBody from "../middleware/requireBody.js";
 import { createToken } from "../utils/jwt.js";
 import getUserFromToken from "../middleware/getUserFromToken.js";
@@ -41,6 +45,32 @@ router.put(
   updateUserAvatar,
 );
 
-//adding a User update for account information.
+router.put(
+  "/:id",
+  getUserFromToken,
+  requireBody(["firstname", "lastname", "email"]), // ✅ FIX
+  async (req, res, next) => {
+    try {
+      if (!req.user) {
+        return res.status(401).send("Unauthorized");
+      }
 
-router.put();
+      if (req.user.id !== Number(req.params.id)) {
+        return res.status(403).send("Forbidden");
+      }
+
+      const { firstname, lastname, email } = req.body;
+
+      const userInfo = await updateUserInDB(req.user.id, {
+        firstname,
+        lastname,
+        email,
+      });
+
+      res.status(200).json(userInfo);
+    } catch (err) {
+      console.error(err);
+      next(err);
+    }
+  },
+);
