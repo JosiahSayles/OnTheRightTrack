@@ -119,11 +119,11 @@ export default function Register() {
               alt="hiring manager interviewing another man"
               className="md:mx-1 md:mt-3 h-1/2 shadow-md rounded-3xl "
             />
-            <img
+            {/* <img
               src="/img/Offer.jpg"
               alt="hiring manager shaking hands with potential female employee"
-              className="md:mx-1 mt-2 w-full shadow-md rounded-3xl "
-            />
+              className="md:mx-1 mt-2  shadow-md rounded-3xl "
+            /> */}
           </figure>
         </div>
       </section>
