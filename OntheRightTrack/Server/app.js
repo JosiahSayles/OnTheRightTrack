@@ -10,10 +10,7 @@ export default app;
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", // local dev
-      "https://ontherighttrack.vercel.app", // production frontend
-    ],
+    origin: ["http://localhost:5173", "https://ontherighttrack.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
