@@ -112,7 +112,18 @@ export default function Register() {
             </div>
           </div>
         </div>
-        <div className=""></div>
+        <div className="">
+          <figure>
+            <img
+              src="/img/interviewing.jpg"
+              alt="hiring manager interviewing another man"
+            />
+            <img
+              src="/img/offer.jpg"
+              alt="hiring manager shaking hands with  potential female employee"
+            />
+          </figure>
+        </div>
       </section>
     </>
   );
