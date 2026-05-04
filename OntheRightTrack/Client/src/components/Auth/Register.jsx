@@ -99,6 +99,18 @@ export default function Register() {
                 Login here
               </Link>
             </p>
+            <div className="">
+              <figure>
+                <img
+                  src="/img/interviewing.jpg"
+                  alt="hiring manager interviewing another man"
+                />
+                <img
+                  src="/img/offer.jpg"
+                  alt="hiring manager shaking hands with  potential female employee"
+                />
+              </figure>
+            </div>
             <div>
               <ul className="lg:flex md:flex-row md:mt-50 text-lime-500 font-semibold ">
                 <li className="ml-1 lg:ml-4 hover:underline">Contact</li>
@@ -111,18 +123,6 @@ export default function Register() {
               <hr className="h-[1px] mt-5 mb-3 border-0 mx-10 bg-lime-400" />
             </div>
           </div>
-        </div>
-        <div className="">
-          <figure>
-            <img
-              src="/img/interviewing.jpg"
-              alt="hiring manager interviewing another man"
-            />
-            <img
-              src="/img/offer.jpg"
-              alt="hiring manager shaking hands with  potential female employee"
-            />
-          </figure>
         </div>
       </section>
     </>
