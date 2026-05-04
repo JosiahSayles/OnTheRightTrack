@@ -20,7 +20,7 @@ export default function UserInfo({ user, applicationsAdded, documents = [] }) {
   return (
     <div className="flex-col">
       <section className="md:flex flex-row ">
-        <div className="md:text-lg font-semibold bg-white p-5 my-2 rounded-lg md:ml-6">
+        <div className="md:text-lg border-4 font-semibold bg-white p-5 my-2 rounded-lg md:ml-6">
           <h3 className="font-bold md:text-2xl mb-6 text-lime-900">
             Account Information
           </h3>
@@ -35,7 +35,7 @@ export default function UserInfo({ user, applicationsAdded, documents = [] }) {
           </p>
         </div>
 
-        <div className="flex flex-col items-center justify-center md:text-2xl bg-white p-5 my-2 rounded-lg md:ml-2">
+        <div className="flex flex-col items-center border-4 justify-center md:text-2xl bg-white p-5 my-2 rounded-lg md:ml-2">
           <h3 className="font-bold text-lime-900 md:mt-5">
             Current Application Count:
           </h3>

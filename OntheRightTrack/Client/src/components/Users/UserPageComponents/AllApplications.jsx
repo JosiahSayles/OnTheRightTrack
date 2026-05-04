@@ -19,7 +19,7 @@ export default function AllApplications({
   }
 
   return (
-    <section className=" shadow-md bg-lime-500 p-6 mb-6">
+    <section className=" shadow-md bg-lime-200 p-6 mb-6">
       <div className="flex justify-center items-center mb-4">
         <h2 className="text-xl font-bold text-slate-800">Active</h2>
       </div>
@@ -29,12 +29,12 @@ export default function AllApplications({
             key={application.id}
             className=" rounded-xl shadow-md mb-5 md:w-1/4 mx-2 "
           >
-            <div className="flex flex-col justify-center items-center p-3 bg-lime-600 rounded-xl  ">
+            <div className="flex flex-col justify-center items-center py-2 px-4 bg-lime-800 rounded-xl  ">
               <button
                 onClick={() => toggleExpand(application.id)}
-                className="flex-1 text-left font-semibold text-slate-900 hover:text-slate-600  transition flex items-center gap-2"
+                className="flex-1 text-left font-semibold text-white hover:text-slate-900 transition flex items-center gap-2"
               >
-                <span className="md:text-lg font-bold">
+                <span className="md:text-xl font-bold">
                   {expandedId === application.id ? "➖" : "➕"}{" "}
                   {application.jobtitle} at {application.companyname}{" "}
                 </span>{" "}

@@ -249,6 +249,21 @@ export default function Users() {
     }
   }
 
+  const onUpdateDate = async (applicationId, date) => {
+    const updatedApp = await request(`/applications/${applicationId}`, {
+      method: "PATCH",
+      body: JSON.stringify({ interviewdate: date }),
+    });
+
+    setApplications((prev) =>
+      prev.map((application) =>
+        application.id === applicationId
+          ? { ...application, interviewdate: updatedApp.interviewdate }
+          : application,
+      ),
+    );
+  };
+
   const applicationToEdit = editApplication
     ? applications?.find((application) => application.id === editApplication)
     : null;
@@ -278,38 +293,41 @@ export default function Users() {
             />
             <UserInfo user={user} applicationsAdded={applicationsAdded} />
           </div>
-
-          <div className="md:w-11/12 w-2/3">
-            <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-            {searchTerm && (
-              <div className="absolute bg-white shadow-lg rounded-lg w-1/3  mx-10 z-50">
-                {filteredApplications.map((application) => (
-                  <div
-                    key={application.id}
-                    className="p-3 hover:bg-gray-100 cursor-pointer"
-                    onClick={() => {
-                      setSearchTerm("");
-                      setEditApplication(application.id);
-                    }}
-                  >
-                    {application.companyname} - {application.jobtitle}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-          <div className="flex justify-center ">
-            {error && (
-              <div className="border-2 border-red-500 bg-red-100 p-4 w-1/4 flex justify-center mb-6 rounded">
-                <p className="text-red-800">Error: {error}</p>
-              </div>
-            )}
-          </div>
           <hr className="h-[3px] mt-5 mb-3 border-0 mx-10 bg-lime-400" />
           <div className="flex-col ">
-            <h2 className="text-xl md:text-6xl font-bold md: text-black mx-5 mt-2 pb-3">
+            <h2 className="text-xl md:text-6xl font-bold md:ml-10 text-black mx-5 mt-2 pb-3">
               {user?.firstname || "Guest"}'s Applications
             </h2>
+
+            <div className="md:w-11/12 w-2/3">
+              <SearchBar
+                searchTerm={searchTerm}
+                onSearchChange={setSearchTerm}
+              />
+              {searchTerm && (
+                <div className="absolute bg-white shadow-lg rounded-lg w-1/3  mx-10 z-50">
+                  {filteredApplications.map((application) => (
+                    <div
+                      key={application.id}
+                      className="p-3 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => {
+                        setSearchTerm("");
+                        setEditApplication(application.id);
+                      }}
+                    >
+                      {application.companyname} - {application.jobtitle}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="flex justify-center ">
+              {error && (
+                <div className="border-2 border-red-500 bg-red-100 p-4 w-1/4 flex justify-center mb-6 rounded">
+                  <p className="text-red-800">Error: {error}</p>
+                </div>
+              )}
+            </div>
 
             <div className="md:mx-10 mx-2 mt-5">
               <AllApplications
@@ -349,7 +367,10 @@ export default function Users() {
       </section>
       <section className="flex flex-col  items-center bg-stone-300 md:max-w-1/4 w-full text-shadow-lg md:px-2 pb-6 ">
         <div className="flex justify-center ">
-          <UpcomingInterviewsCard applications={applications} />
+          <UpcomingInterviewsCard
+            applications={applications}
+            onUpdateDate={onUpdateDate}
+          />
         </div>
       </section>
       {editAccount && (
