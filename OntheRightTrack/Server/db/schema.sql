@@ -33,5 +33,6 @@ CREATE TABLE job_applications (
     notes text, 
     user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     resume_id INTEGER REFERENCES documents(id) ON DELETE SET NULL,
-    cover_letter_id INTEGER REFERENCES documents(id) ON DELETE SET NULL
+    cover_letter_id INTEGER REFERENCES documents(id) ON DELETE SET NULL,
+    interviewdate date DEFAULT NULL,
 );
