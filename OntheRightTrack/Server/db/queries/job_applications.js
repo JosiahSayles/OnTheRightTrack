@@ -80,7 +80,9 @@ export async function updateApplication(id, user_id, fields) {
     "interviewdate",
   ];
 
-  const keys = Object.keys(fields).filter((key) => allowedFields.includes(key));
+  const keys = Object.keys(fields).filter(
+    (key) => allowedFields.includes(key) && fields[key] !== undefined,
+  );
 
   if (keys.length === 0) {
     throw new Error("No valid fields to update");
@@ -104,21 +106,21 @@ export async function updateApplication(id, user_id, fields) {
   return application;
 }
 
-export async function updateJobStatus(id, status) {
-  const sql = `UPDATE job_applications
-  SET status =$2 WHERE id= $1 RETURNING *`;
+// export async function updateJobStatus(id, status) {
+//   const sql = `UPDATE job_applications
+//   SET status =$2 WHERE id= $1 RETURNING *`;
 
-  const { rows: job_application } = await db.query(sql, [id, status]);
-  return job_application;
-}
+//   const { rows: job_application } = await db.query(sql, [id, status]);
+//   return job_application;
+// }
 
-export async function updateInterviewDate(id, interviewdate, user_id) {
-  const sql = `UPDATE job_applications
-  SET interviewdate =$2 WHERE id =$1 AND user_id =$3 RETURNING * `;
-  const { rows: application } = await db.query(sql, [
-    id,
-    interviewdate,
-    user_id,
-  ]);
-  return application;
-}
+// export async function updateInterviewDate(id, interviewdate, user_id) {
+//   const sql = `UPDATE job_applications
+//   SET interviewdate =$2 WHERE id =$1 AND user_id =$3 RETURNING * `;
+//   const { rows: application } = await db.query(sql, [
+//     id,
+//     interviewdate,
+//     user_id,
+//   ]);
+//   return application;
+// }
