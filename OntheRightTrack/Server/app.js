@@ -16,7 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/users", userRouter);
 app.use("/applications", applicationRouter);
 app.use("/documents", documentRouter);
-app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 app.set("trust proxy", 1);
 
 app.use((err, req, res, next) => {
