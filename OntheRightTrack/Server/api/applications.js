@@ -10,7 +10,6 @@ import {
   deleteApplication,
   updateApplication,
   updateJobStatus,
-  updateInterviewDate,
 } from "../db/queries/job_applications.js";
 import requireBody from "../middleware/requireBody.js";
 import requireUser from "../middleware/requireUser.js";
