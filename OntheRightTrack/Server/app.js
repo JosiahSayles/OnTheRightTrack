@@ -16,6 +16,7 @@ app.use("/users", userRouter);
 app.use("/applications", applicationRouter);
 app.use("/documents", documentRouter);
 app.use("/uploads", express.static("uploads"));
+app.set("trust proxy", 1);
 
 app.use((err, req, res, next) => {
   switch (err.code) {
