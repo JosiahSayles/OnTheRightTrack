@@ -4,6 +4,7 @@ import userRouter from "./api/users.js";
 import applicationRouter from "./api/applications.js";
 import cors from "cors";
 import documentRouter from "./api/documents.js";
+import path from "path";
 
 const app = express();
 export default app;
@@ -15,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/users", userRouter);
 app.use("/applications", applicationRouter);
 app.use("/documents", documentRouter);
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 app.set("trust proxy", 1);
 
 app.use((err, req, res, next) => {
