@@ -11,7 +11,7 @@ export default function DocumentDropdown({ documents, onDelete }) {
 
   const docMap = Object.values(groupedDocs).flat();
 
-  const selected = docMap.find((d) => d.id === Number(selectedDoc));
+  const selected = documents.find((d) => d.id === Number(selectedDoc));
 
   async function handleDelete() {
     if (!selected) return;
@@ -60,8 +60,12 @@ export default function DocumentDropdown({ documents, onDelete }) {
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500"
+              onError={(e) => {
+                e.target.href = "#";
+                alert("File not available");
+              }}
             >
-              View
+              View / download
             </a>
 
             <button onClick={handleDelete} className="text-lime-600 ">

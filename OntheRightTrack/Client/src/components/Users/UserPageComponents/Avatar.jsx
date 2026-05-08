@@ -3,7 +3,8 @@ import { useState } from "react";
 export default function Avatar({ user, onEditAccount, onAvatarChange }) {
   const [isHovering, setIsHovering] = useState(false);
   const hasUser = Boolean(user);
-  const avatarSrc = user?.avatarurl || null;
+  const avatarSrc = preview || user?.avatarurl || null;
+  const [preview, setPreview] = useState(null);
 
   function handleImageChange(e) {
     if (!hasUser || typeof onAvatarChange !== "function") return;
@@ -21,6 +22,9 @@ export default function Avatar({ user, onEditAccount, onAvatarChange }) {
       return;
     }
 
+    const previewUrl = URL.createObjectURL(file);
+    setPreview(previewUrl);
+
     onAvatarChange(file);
 
     e.target.value = null;
@@ -37,7 +41,10 @@ export default function Avatar({ user, onEditAccount, onAvatarChange }) {
           <img
             src={avatarSrc}
             alt="User avatar"
-            className="w-full h-full object-cover rounded-lg "
+            className="w-full h-full object-cover rounded-lg"
+            onError={(e) => {
+              e.target.src = "/default-avatar.png";
+            }}
           />
         ) : (
           <span className=" text-slate-600">

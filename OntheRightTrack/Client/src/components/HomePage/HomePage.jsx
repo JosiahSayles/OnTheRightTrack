@@ -22,7 +22,7 @@ export default function HomePage() {
   return (
     <>
       <section className="flex justify-center   min-h-screen ">
-        <div className="bg-lime-900 md:w-1/2 text-shadow-lg w-full px-2  ">
+        <div className="bg-lime-900 md:w-1/2 text-shadow-lg w-full md:px-2 px-5 ">
           <h1 className=" lexend-giga text-xl md:text-6xl font-bold md:pt-10 md:px-10 text-lime-400  mx-10 md:mx-20 mx-5 mt-5 pb-3">
             On the Right Track!
           </h1>
@@ -133,7 +133,7 @@ export default function HomePage() {
                 </Link>
               </p>
             </form>
-            <ul className="lg:flex md:flex-row md:mt-40 text-lime-500 font-semibold ">
+            <ul className="lg:flex md:flex-row md:mt-40 mt-20 text-lime-500 font-semibold ">
               <li className="ml-1 lg:ml-4 hover:underline">Contact</li>
               <li className="ml-1 lg:ml-4 hover:underline">
                 Terms & Agreements

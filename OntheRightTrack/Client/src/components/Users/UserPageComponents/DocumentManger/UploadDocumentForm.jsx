@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useApi } from "../../../API/APIContext";
-const API = import.meta.env.VITE_API_URL;
+import { useRef } from "react";
 
 export default function UploadDocumentForm({ onUpload }) {
+  const fileRef = useRef();
   const { request } = useApi();
   const [file, setFile] = useState(null);
   const [form, setForm] = useState({
@@ -20,12 +21,20 @@ export default function UploadDocumentForm({ onUpload }) {
     formData.append("type", form.type);
     formData.append("filename", form.filename);
 
-    await request("/documents", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      await request("/documents", {
+        method: "POST",
+        body: formData,
+      });
 
-    onUpload();
+      setFile(null);
+      setForm({ type: "resume", filename: "" });
+
+      onUpload();
+    } catch (err) {
+      console.error("Upload failed:", err);
+      alert("Failed to upload document");
+    }
   }
 
   return (
@@ -49,6 +58,7 @@ export default function UploadDocumentForm({ onUpload }) {
       />
 
       <input
+        ref={fileRef}
         type="file"
         name="file"
         accept=".pdf,.doc,.docx"
