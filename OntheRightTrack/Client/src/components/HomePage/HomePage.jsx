@@ -22,7 +22,7 @@ export default function HomePage() {
   return (
     <>
       <section className="flex justify-center   min-h-screen ">
-        <div className="bg-lime-900 md:w-1/2 text-shadow-lg w-full md:px-2 px-5 ">
+        <div className="bg-lime-900 md:w-1/2 text-shadow-lg w-full md:px-2 ">
           <h1 className=" lexend-giga text-xl md:text-6xl font-bold md:pt-10 md:px-10 text-lime-400  mx-10 md:mx-20 mx-5 mt-5 pb-3">
             On the Right Track!
           </h1>
@@ -90,7 +90,7 @@ export default function HomePage() {
             />
           </figure>
         </div>
-        <div className="flex-col justify-items-center bg-stone-100 md:w-1/3 px-2 ">
+        <div className="flex-col justify-items-center bg-stone-100 md:w-1/3 md:px-2 px-6 ">
           <h2 className="md:text-5xl font-bold pt-30 mb-10 text-shadow-lg">
             Welcome Back!
             <hr className="h-[1px] mt-5 mb-3 border-0 mx-10 bg-lime-400" />
