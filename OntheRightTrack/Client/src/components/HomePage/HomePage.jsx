@@ -22,7 +22,7 @@ export default function HomePage() {
   return (
     <>
       <section className="flex justify-center   min-h-screen ">
-        <div className="bg-lime-900 md:w-1/2 text-shadow-lg w-full md:px-2 ">
+        <div className="bg-lime-900 md:w-1/2 text-shadow-lg w-full px-2 ">
           <h1 className=" lexend-giga text-xl md:text-6xl font-bold md:pt-10 md:px-10 text-lime-400  mx-10 md:mx-20 mx-5 mt-5 pb-3">
             On the Right Track!
           </h1>
